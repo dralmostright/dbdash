@@ -471,6 +471,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../overview/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../overview/tech-stack.md" class="md-nav__link">
         
   
@@ -1168,7 +1196,235 @@
 
   <h1>Index</h1>
 
-
+<p>--
+-- This script is optional, I am posting it here for better performance of the application in future
+-- The owner i have used is apiusr, you can change as per your need and the schema i am using is public you can 
+-- create you own database and schemas to run this script
+--
+-- Database used is postgres, just to make things simple and ease
+--
+-- This table contains the information about the users 
+--
+CREATE TABLE IF NOT EXISTS public.apiusers
+(
+    uid uuid NOT NULL,
+    username character varying COLLATE pg_catalog."default" NOT NULL,
+    email character varying COLLATE pg_catalog."default" NOT NULL,
+    password_hash character varying COLLATE pg_catalog."default" NOT NULL,
+    first_name character varying COLLATE pg_catalog."default" NOT NULL,
+    last_name character varying COLLATE pg_catalog."default" NOT NULL,
+    role character varying COLLATE pg_catalog."default" NOT NULL DEFAULT 'user'::character varying,
+    is_verified boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    display_pic character varying COLLATE pg_catalog."default" DEFAULT 'src/assets/img/profile-imp.jpg'::character varying,
+    CONSTRAINT apiusers_pkey PRIMARY KEY (uid)
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.apiusers
+    OWNER to apiusr;</p>
+<p>--
+-- This table constains information about aws accounts that a orginization has
+--
+CREATE TABLE IF NOT EXISTS public.awsaccounts
+(
+    aid uuid NOT NULL,
+    account_number character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    account_alias character varying COLLATE pg_catalog."default" NOT NULL,
+    account_org character varying COLLATE pg_catalog."default" NOT NULL,
+    account_status boolean NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    description character varying COLLATE pg_catalog."default",
+    account_az character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT awsaccounts_pkey PRIMARY KEY (aid),
+    CONSTRAINT awsaccounts_account_number_key UNIQUE (account_number)
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.awsaccounts
+    OWNER to apiusr;</p>
+<p>--
+-- This is one of the main table and its the one which will be growing in future
+-- It holds all the rds information obtained from each account
+-- 
+CREATE TABLE IF NOT EXISTS public.rdsinstances
+(
+    riid uuid NOT NULL,
+    rds_identifier character varying COLLATE pg_catalog."default",
+    rds_instanceclass character varying COLLATE pg_catalog."default",
+    rds_engine character varying COLLATE pg_catalog."default",
+    rds_inststatus character varying COLLATE pg_catalog."default",
+    rds_instcreatetime timestamp without time zone,
+    rds_allocstorage character varying COLLATE pg_catalog."default",
+    rds_paramgroup character varying COLLATE pg_catalog."default",
+    rds_az character varying COLLATE pg_catalog."default",
+    rds_enginever character varying COLLATE pg_catalog."default",
+    rds_lisencemodel character varying COLLATE pg_catalog."default",
+    rds_copytagsnapshot character varying COLLATE pg_catalog."default",
+    rds_storagetype character varying COLLATE pg_catalog."default",
+    rds_multiaz character varying COLLATE pg_catalog."default",
+    rds_storageencrypted character varying COLLATE pg_catalog."default",
+    rds_deleteprotection character varying COLLATE pg_catalog."default",
+    rds_clusteridentifier character varying COLLATE pg_catalog."default",
+    rds_masteruser character varying COLLATE pg_catalog."default",
+    rds_dbinstrole character varying COLLATE pg_catalog."default",
+    rds_clusterendpoint character varying COLLATE pg_catalog."default",
+    rds_endpoint character varying COLLATE pg_catalog."default",
+    rds_port character varying COLLATE pg_catalog."default",
+    rds_vpc character varying COLLATE pg_catalog."default",
+    rds_secgroup character varying COLLATE pg_catalog."default",
+    rds_subnetgrp character varying COLLATE pg_catalog."default",
+    rds_subnets character varying COLLATE pg_catalog."default",
+    rds_backupretention character varying COLLATE pg_catalog."default",
+    rds_taglist character varying COLLATE pg_catalog."default" NOT NULL,
+    rds_datacollectiondate bigint NOT NULL,
+    rds_aws_id uuid NOT NULL,
+    created_at timestamp without time zone,
+    CONSTRAINT rdsinstances_pkey PRIMARY KEY (riid),
+    CONSTRAINT rdsinstances_rds_aws_id_fkey FOREIGN KEY (rds_aws_id)
+        REFERENCES public.awsaccounts (aid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.rdsinstances
+    OWNER to apiusr;</p>
+<p>CREATE TABLE IF NOT EXISTS public.rdsawsmap
+(
+    raid uuid NOT NULL,
+    aws_aid uuid NOT NULL,
+    last_collection_at bigint NOT NULL,
+    rds_riid uuid NOT NULL,
+    created_at timestamp without time zone,
+    CONSTRAINT rdsawsmap_pkey PRIMARY KEY (raid),
+    CONSTRAINT rdsawsmap_aws_aid_fkey FOREIGN KEY (aws_aid)
+        REFERENCES public.awsaccounts (aid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT rdsawsmap_rds_riid_fkey FOREIGN KEY (rds_riid)
+        REFERENCES public.rdsinstances (riid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.rdsawsmap
+    OWNER to apiusr;</p>
+<p>CREATE TABLE IF NOT EXISTS public.rdsinstparams
+(
+    param_id uuid NOT NULL,
+    param_type character varying COLLATE pg_catalog."default",
+    param_groupname character varying COLLATE pg_catalog."default",
+    param_name character varying COLLATE pg_catalog."default",
+    param_value character varying COLLATE pg_catalog."default",
+    param_riid uuid NOT NULL,
+    param_row_created_at timestamp without time zone,
+    CONSTRAINT rdsinstparams_pkey PRIMARY KEY (param_id),
+    CONSTRAINT rdsinstparams_param_riid_fkey FOREIGN KEY (param_riid)
+        REFERENCES public.rdsinstances (riid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.rdsinstparams
+    OWNER to apiusr;</p>
+<p>-- Table: public.rdssecrules</p>
+<p>-- DROP TABLE IF EXISTS public.rdssecrules;</p>
+<p>CREATE TABLE IF NOT EXISTS public.rdssecrules
+(
+    sec_id uuid NOT NULL,
+    sec_group_name character varying COLLATE pg_catalog."default",
+    sec_gpid character varying COLLATE pg_catalog."default",
+    sec_riid uuid NOT NULL,
+    sec_rule_name character varying COLLATE pg_catalog."default",
+    sec_port_range character varying COLLATE pg_catalog."default",
+    sec_ip_ranges character varying COLLATE pg_catalog."default",
+    sec_row_created_at timestamp without time zone,
+    sec_row_updated_at timestamp without time zone,
+    CONSTRAINT rdssecrules_pkey PRIMARY KEY (sec_id),
+    CONSTRAINT rdssecrules_sec_riid_fkey FOREIGN KEY (sec_riid)
+        REFERENCES public.rdsinstances (riid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.rdssecrules
+    OWNER to apiusr; </p>
+<p>CREATE TABLE IF NOT EXISTS public.rdsmajoreol
+(
+    rds_ma_id uuid NOT NULL,
+    rds_ma_type character varying COLLATE pg_catalog."default",
+    rds_ma_ver character varying COLLATE pg_catalog."default",
+    rds_ma_cm_release_date character varying COLLATE pg_catalog."default",
+    rds_ma_release_date character varying COLLATE pg_catalog."default",
+    rds_ma_cm_eol character varying COLLATE pg_catalog."default",
+    rds_ma_rds_seol character varying COLLATE pg_catalog."default",
+    rds_ma_ex_eol character varying COLLATE pg_catalog."default",
+    rds_ma_1y_ex_eol character varying COLLATE pg_catalog."default",
+    rds_ma_3y_ex_eol character varying COLLATE pg_catalog."default",
+    rds_ma_lts character varying COLLATE pg_catalog."default",
+    url_raw character varying COLLATE pg_catalog."default",
+    ma_row_created_at timestamp without time zone,
+    CONSTRAINT rdsmajoreol_pkey PRIMARY KEY (rds_ma_id)
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.rdsmajoreol
+    OWNER to apiusr;</p>
+<p>-- Table: public.rdsminoreol</p>
+<p>-- DROP TABLE IF EXISTS public.rdsminoreol;</p>
+<p>CREATE TABLE IF NOT EXISTS public.rdsminoreol
+(
+    rds_mi_id uuid NOT NULL,
+    rds_mi_type character varying COLLATE pg_catalog."default",
+    rds_mi_ma_ver character varying COLLATE pg_catalog."default",
+    rds_mi_ver character varying COLLATE pg_catalog."default",
+    rds_mi_cr_date character varying COLLATE pg_catalog."default",
+    rds_mi_release_date character varying COLLATE pg_catalog."default",
+    rds_mi_seol character varying COLLATE pg_catalog."default",
+    rds_mi_lts character varying COLLATE pg_catalog."default",
+    url_raw character varying COLLATE pg_catalog."default",
+    mi_row_created_at timestamp without time zone,
+    CONSTRAINT rdsminoreol_pkey PRIMARY KEY (rds_mi_id)
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.rdsminoreol
+    OWNER to apiusr;</p>
+<p>CREATE TABLE IF NOT EXISTS public.ec2hwdetail
+(
+    ec2_hw_type_id uuid NOT NULL,
+    ec2_hw_model character varying COLLATE pg_catalog."default",
+    ec2_hw_type character varying COLLATE pg_catalog."default",
+    ec2_hw_basebandwm character varying COLLATE pg_catalog."default",
+    ec2_hw_maxbandwm character varying COLLATE pg_catalog."default",
+    ec2_hw_basethroputm character varying COLLATE pg_catalog."default",
+    ec2_hw_maxthroputm character varying COLLATE pg_catalog."default",
+    ec2_hw_baseiopsm character varying COLLATE pg_catalog."default",
+    ec2_hw_maxiopswm character varying COLLATE pg_catalog."default",
+    url_raw character varying COLLATE pg_catalog."default",
+    CONSTRAINT ec2hwdetail_pkey PRIMARY KEY (ec2_hw_type_id)
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.ec2hwdetail
+    OWNER to apiusr;</p>
+<p>-- Table: public.rdshwdetail</p>
+<p>-- DROP TABLE IF EXISTS public.rdshwdetail;</p>
+<p>CREATE TABLE IF NOT EXISTS public.rdshwdetail
+(
+    rds_hw_id uuid NOT NULL,
+    rds_hw_model character varying COLLATE pg_catalog."default",
+    rds_hw_type character varying COLLATE pg_catalog."default",
+    rds_hw_vcpu character varying COLLATE pg_catalog."default",
+    rds_hw_core character varying COLLATE pg_catalog."default",
+    rds_hw_mem character varying COLLATE pg_catalog."default",
+    rds_hw_storage character varying COLLATE pg_catalog."default",
+    rds_hw_ebs_mbps character varying COLLATE pg_catalog."default",
+    rds_hw_net_gbps character varying COLLATE pg_catalog."default",
+    rds_hw_ebs_gbps character varying COLLATE pg_catalog."default",
+    url_raw character varying COLLATE pg_catalog."default",
+    CONSTRAINT rdshwdetail_pkey PRIMARY KEY (rds_hw_id)
+)</p>
+<p>TABLESPACE pg_default;</p>
+<p>ALTER TABLE IF EXISTS public.rdshwdetail
+    OWNER to apiusr;</p>
 
 
 
