@@ -628,17 +628,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#created-additional-indexes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Created Additional indexes
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1512,17 +1501,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#created-additional-indexes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Created Additional indexes
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1701,11 +1679,15 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">pg_cron</span><span class="p">;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">pg_partman</span><span class="p">;</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">\</span><span class="k">connect</span><span class="w"> </span><span class="n">postgres</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">pg_cron</span><span class="p">;</span>
 
-<span class="c1">-- Optional: create the schema for example partitioning</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">partman</span><span class="p">;</span>
+<span class="err">\</span><span class="k">connect</span><span class="w"> </span><span class="n">apidb</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">pg_stat_statements</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">partman</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">pg_partman</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">partman</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div></p>
 <h3 id="core-tables">Core Tables</h3>
 <h4 id="1-publicapiusers">1. public.apiusers</h4>
@@ -1725,11 +1707,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">apiusers</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">apiusers</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">uid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
@@ -1744,11 +1722,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">display_pic</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;src/assets/img/profile-imp.jpg&#39;</span><span class="p">::</span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">,</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">apiusers_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
 <span class="p">)</span>
-
 <span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">apiusers</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="2-publicawsaccounts">2. public.awsaccounts</h4>
 <p>Stores AWS account metadata associated with an organization.</p>
@@ -1766,11 +1740,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">awsaccounts</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">awsaccounts</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">aid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">account_number</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
@@ -1784,11 +1754,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">awsaccounts_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">aid</span><span class="p">),</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">awsaccounts_account_number_key</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">account_number</span><span class="p">)</span>
 <span class="p">)</span>
-
 <span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">awsaccounts</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="3-publicrdsinstances">3. public.rdsinstances</h4>
 <p>Stores RDS instance metadata collected over time. This table is expected to grow significantly and is therefore range-partitioned by time.</p>
@@ -1835,7 +1801,9 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
-<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">riid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">rds_identifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
@@ -1874,11 +1842,13 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
 <span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
 <span class="p">)</span>
-<span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="p">(</span><span class="n">created_at</span><span class="p">)</span>
-<span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
+<span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="p">(</span><span class="n">created_at</span><span class="p">);</span>
 
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_rdsinstances_created_at</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span><span class="w"> </span><span class="p">(</span><span class="n">created_at</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_rdsinstances_rds_identifier</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span><span class="w"> </span><span class="p">(</span><span class="n">rds_identifier</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <h5 id="why-partitioning">Why Partitioning?</h5>
 <ul>
@@ -1886,17 +1856,6 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <li>Fast data cleanup via partition drops</li>
 <li>Improved insert and query performance at scale</li>
 </ul>
-<h5 id="created-additional-indexes">Created Additional indexes</h5>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">rdsinstances</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances_parent</span><span class="w"> </span><span class="p">(</span><span class="n">created_at</span><span class="p">);</span>
-
-<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_rdsinstances_rds_identifier</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span><span class="w"> </span><span class="p">(</span><span class="n">rds_identifier</span><span class="p">);</span>
-</code></pre></div></td></tr></table></div>
 <h4 id="4-publicrdsawsmap">4. public.rdsawsmap</h4>
 <p>Maps AWS accounts to RDS instances.
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1912,11 +1871,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsawsmap</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsawsmap</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">raid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">aws_aid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
@@ -1929,11 +1884,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
 <span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
 <span class="p">)</span>
-
 <span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsawsmap</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div></p>
 <h4 id="5-publicrdsinstparams">5. public.rdsinstparams</h4>
 <p>Stores parameter group details per RDS instance (only non default)</p>
@@ -1948,15 +1899,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstparams</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstparams</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">param_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">param_type</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
@@ -1965,17 +1908,9 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">param_value</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">param_riid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">param_row_created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
-<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsinstparams_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">param_id</span><span class="p">),</span>
-<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsinstparams_param_riid_fkey</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">param_riid</span><span class="p">)</span>
-<span class="w">        </span><span class="k">REFERENCES</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span><span class="w"> </span><span class="p">(</span><span class="n">riid</span><span class="p">)</span><span class="w"> </span><span class="k">MATCH</span><span class="w"> </span><span class="k">SIMPLE</span>
-<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
-<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
+<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsinstparams_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">param_id</span><span class="p">,</span><span class="n">param_row_created_at</span><span class="p">)</span>
 <span class="p">)</span>
-
-<span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstparams</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
+<span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="p">(</span><span class="n">param_row_created_at</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="6-publicrdssecrules">6. public.rdssecrules</h4>
 <p>Stores security group rules associated with RDS instances.</p>
@@ -1992,15 +1927,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdssecrules</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdssecrules</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">sec_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">sec_group_name</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
@@ -2011,19 +1938,12 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">sec_ip_ranges</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">sec_row_created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
 <span class="w">    </span><span class="n">sec_row_updated_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
-<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdssecrules_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">sec_id</span><span class="p">),</span>
-<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdssecrules_sec_riid_fkey</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">sec_riid</span><span class="p">)</span>
-<span class="w">        </span><span class="k">REFERENCES</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span><span class="w"> </span><span class="p">(</span><span class="n">riid</span><span class="p">)</span><span class="w"> </span><span class="k">MATCH</span><span class="w"> </span><span class="k">SIMPLE</span>
-<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
-<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
+<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdssecrules_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">sec_id</span><span class="p">,</span><span class="n">sec_row_created_at</span><span class="p">)</span>
 <span class="p">)</span>
-
-<span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdssecrules</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span><span class="w"> </span>
+<span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="p">(</span><span class="n">sec_row_created_at</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="7-publicrdsmajoreolrdsmajoreol">7. public.rdsmajoreol/rdsmajoreol</h4>
+<p>Tracks major and minor engine end-of-life (EOL) data.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -2057,17 +1977,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Tracks</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">minor</span><span class="w"> </span><span class="n">engine</span><span class="w"> </span><span class="k">end</span><span class="o">-</span><span class="k">of</span><span class="o">-</span><span class="n">life</span><span class="w"> </span><span class="p">(</span><span class="n">EOL</span><span class="p">)</span><span class="w"> </span><span class="k">data</span><span class="p">.</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsmajoreol</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsmajoreol</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">rds_ma_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">rds_ma_type</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
@@ -2084,11 +1994,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">ma_row_created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsmajoreol_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">rds_ma_id</span><span class="p">)</span>
 <span class="p">)</span>
-
 <span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsmajoreol</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
 
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsminoreol</span>
 <span class="p">(</span>
@@ -2104,11 +2010,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">mi_row_created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsminoreol_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">rds_mi_id</span><span class="p">)</span>
 <span class="p">)</span>
-
 <span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsminoreol</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="8-publicec2hwdetailrdshwdetail">8. public.ec2hwdetail/rdshwdetail</h4>
 <p>Stores EC2 and RDS hardware specifications.</p>
@@ -2143,15 +2045,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">ec2hwdetail</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">ec2hwdetail</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">ec2_hw_type_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">ec2_hw_model</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
@@ -2165,11 +2059,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">url_raw</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">ec2hwdetail_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ec2_hw_type_id</span><span class="p">)</span>
 <span class="p">)</span>
-
 <span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">ec2hwdetail</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
 
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdshwdetail</span>
 <span class="p">(</span>
@@ -2186,11 +2076,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">url_raw</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdshwdetail_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">rds_hw_id</span><span class="p">)</span>
 <span class="p">)</span>
-
 <span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdshwdetail</span>
-<span class="w">    </span><span class="k">OWNER</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">apiusr</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="partition-management-with-pg_partman">Partition Management with pg_partman</h3>
 <h4 id="create-monthly-partitions">Create Monthly Partitions</h4>
@@ -2210,16 +2096,56 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- Create monthly partitions for the table</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- Create monthly partitions for the table</span>
 <span class="c1">-- create the next 4 partition in advance</span>
 <span class="c1">-- starts from first existing row</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">&quot;$user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">partman</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="p">;</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">create_parent</span><span class="p">(</span>
 <span class="w">    </span><span class="n">p_parent_table</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdsinstances&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">p_control</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">p_type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;time&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">p_interval</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;monthly&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;range&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_interval</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1 month&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">p_premake</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">           </span>
 <span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span>
+<span class="p">);</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">create_parent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">p_parent_table</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdsinstparams&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_control</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;param_row_created_at&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;range&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_interval</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1 month&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_premake</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">           </span>
+<span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w">  </span>
+<span class="p">);</span>
+
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">create_parent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">p_parent_table</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdssecrules&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_control</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sec_row_created_at&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;range&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_interval</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1 month&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_premake</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">           </span>
+<span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span>
 <span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="retention-policy">Retention Policy</h4>
@@ -2229,19 +2155,37 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <li>Retains only the last 24 months of data</li>
 <li>Older partitions are automatically dropped</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- Keep only the last 24 months</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">set_config</span><span class="p">(</span>
-<span class="w">    </span><span class="n">p_parent_table</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdsinstances&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">p_control</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">p_retention</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">p_retention_schema</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;partman&#39;</span>
-<span class="p">);</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- Keep only the last 24 months</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">&quot;$user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">partman</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="p">;</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">retention_keep_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">parent_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdsinstances&#39;</span><span class="p">;</span>
+
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">retention_keep_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">parent_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdsinstparams&#39;</span><span class="p">;</span>
+
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">retention_keep_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">parent_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdssecrules&#39;</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="automated-maintenance-pg_cron">Automated Maintenance (pg_cron)</h4>
 <p>Runs Daily</p>
@@ -2250,16 +2194,44 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <li>Drops expired partitions</li>
 <li>Keeps metadata in sync</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- This requires pg_cron</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">\</span><span class="k">connect</span><span class="w"> </span><span class="n">postgres</span>
+<span class="c1">-- This requires pg_cron</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cron</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
 <span class="w">    </span><span class="s1">&#39;pg_partman_maintenance&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- every day at 2 AM</span>
 <span class="w">    </span><span class="err">$$</span><span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">run_maintenance</span><span class="p">(</span><span class="s1">&#39;public.rdsinstances&#39;</span><span class="p">);</span><span class="err">$$</span>
+<span class="p">);</span>
+
+<span class="c1">-- This requires pg_cron</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">cron</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;pg_partman_maintenance&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- every day at 2 AM</span>
+<span class="w">    </span><span class="err">$$</span><span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">run_maintenance</span><span class="p">(</span><span class="s1">&#39;public.rdsinstparams&#39;</span><span class="p">);</span><span class="err">$$</span>
+<span class="p">);</span>
+<span class="c1">-- This requires pg_cron</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">cron</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;pg_partman_maintenance&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- every day at 2 AM</span>
+<span class="w">    </span><span class="err">$$</span><span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">run_maintenance</span><span class="p">(</span><span class="s1">&#39;public.rdssecrules&#39;</span><span class="p">);</span><span class="err">$$</span>
 <span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 
