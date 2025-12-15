@@ -1,0 +1,4 @@
+/* Optional: reduce font size only for <pre> blocks (ASCII diagrams) */
+pre {
+    font-size: 0.85em;
+}
