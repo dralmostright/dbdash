@@ -12,10 +12,10 @@
         <meta name="author" content="Suman Adhikari">
       
       
-        <link rel="canonical" href="https://dralmostright.github.io/dbdash/guides/installation/">
+        <link rel="canonical" href="https://dralmostright.github.io/dbdash/guides/detail-install/">
       
       
-        <link rel="prev" href="../../overview/database/">
+        <link rel="prev" href="../quick-install/">
       
       
       
@@ -27,7 +27,7 @@
     
     
       
-        <title>Installation - DbDash Documentation</title>
+        <title>Detail Installation - DbDash Documentation</title>
       
     
     
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation
+              Detail Installation
             
           </span>
         </div>
@@ -233,7 +233,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../quick-install/" class="md-tabs__link">
           
   
   
@@ -571,6 +571,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -590,7 +618,7 @@
   <span class="md-ellipsis">
     
   
-    Installation
+    Detail Installation
   
 
     
@@ -608,7 +636,7 @@
   <span class="md-ellipsis">
     
   
-    Installation
+    Detail Installation
   
 
     
@@ -1412,8 +1440,8 @@ git<span class="w"> </span>--version
 </code></pre></div></td></tr></table></div>
 <h2 id="environment-configuration">Environment Configuration</h2>
 <h3 id="backend-database-environment">Backend &amp; Database Environment</h3>
-<p>Create or edit:</p>
-<p><code>backend/.env</code></p>
+<p>Create or edit:
+<code>backend/.env</code></p>
 <p>Example:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1434,8 +1462,8 @@ git<span class="w"> </span>--version
 Adjust the envs accordingly. FILE_* can be ignored for this version, it still needs some functionality which is still being worked on.</p>
 <h3 id="frontend-environment-vite">Frontend Environment (Vite)</h3>
 <p>Create or edit:
-<code>frontend/.env</code>
-Example:
+<code>frontend/.env</code></p>
+<p>Example:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">VITE_API_URL</span><span class="o">=</span>http://localhost:8000/api/v1
 </code></pre></div></td></tr></table></div></p>
 <h2 id="docker-compose-configuration">Docker Compose Configuration</h2>
