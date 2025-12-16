@@ -951,15 +951,17 @@ Adjust the envs accordingly. FILE_* can be ignored for this version, it still ne
 <p>DbDash can be installed seperately without using docker too. For this you need do this seperately and update the configs (mostly env's) accordingly. </p>
 <p>If you want to have database in seperate, then the env for api should be populated with correct host, port and database details.</p>
 <p>If you want to have api in seperate host, make sure you have python version &gt;= 3.11 and all the packages in requirement.txt are installed and database should be reachable through to the specified port.</p>
-<p>If you want to have ui/frontend to be in seperate host, then you need to do the following:
-1. make sure node.js is installed with version &gt;=20.x
-2. install nginx
-3. install all the nodejs dependencies (package.json)
-4. Export the VITE_API_URL environment variable, pointing to api endpoint.
-5. Build the app using npm
-6. Copy the build nginx directory
-7. Configure the nginx config
-8. Start the nginx service</p>
+<p>If you want to have ui/frontend to be in seperate host, then you need to do the following:</p>
+<ol>
+<li>make sure node.js is installed with version &gt;=20.x</li>
+<li>install nginx</li>
+<li>install all the nodejs dependencies (package.json)</li>
+<li>Export the VITE_API_URL environment variable, pointing to api endpoint.</li>
+<li>Build the app using npm</li>
+<li>Copy the build nginx directory</li>
+<li>Configure the nginx config</li>
+<li>Start the nginx service</li>
+</ol>
 
 
 

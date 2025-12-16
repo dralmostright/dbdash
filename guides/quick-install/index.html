@@ -642,6 +642,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -805,6 +816,17 @@
     <span class="md-ellipsis">
       
         API Docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
       
     </span>
   </a>
@@ -1616,6 +1638,11 @@ CONTAINER<span class="w"> </span>ID<span class="w">   </span>IMAGE<span class="w
 <p><img alt="DbDash - UI" src="../../imgs/login-1.jpg" /></p>
 <h3 id="api-docs">API Docs</h3>
 <p><img alt="DbDash - API" src="../../imgs/api-1.jpg" /></p>
+<h3 id="database">Database</h3>
+<p>The last part is you need to register the user using frontend and make the user active 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">update</span><span class="w"> </span><span class="n">apiusers</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">is_verified</span><span class="o">=</span><span class="k">true</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">role</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">email</span><span class="o">=</span><span class="s1">&#39;&lt;registered email&gt;&#39;</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div></p>
+<p>With this you should be able to use the DbDash.</p>
 
 
 
