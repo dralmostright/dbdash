@@ -525,6 +525,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Installation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -541,6 +559,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites:
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -629,6 +677,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites:
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -648,8 +715,17 @@
 
 
 <h1 id="dbdash-quick-installation-guide">DBDash – Quick Installation Guide</h1>
-<p>This document explains how to install, build, and run the complete DBDash stack using Docker and Docker Compose.</p>
+<p>This document explains how to install, build, and run the complete DbDash stack using Docker and Docker Compose.</p>
 <p>The below bash script can be used to build the complete stack using Docker. The full explanation of each component can be found on this.</p>
+<h2 id="prerequisites">Prerequisites:</h2>
+<p>The following prerequisites must be meet for the successful creation of the DbDash Stack.</p>
+<ol>
+<li>Docker must be install and should be accessible to the user who is running to script</li>
+<li>Git must be installed, so that script can fetch the code from github.</li>
+<li>github.com must be accesible and it should be able clone repo</li>
+<li>The directory when the script is being run, the user must have <code>rwx</code> privileges and should be atleast 10G free space.</li>
+<li>Api env file <code>.apienv</code> should be there in directory script being run containing enviornment variables for api</li>
+</ol>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
 <span class="normal">  2</span>
 <span class="normal">  3</span>
