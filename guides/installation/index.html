@@ -27,7 +27,7 @@
     
     
       
-        <title>Build & Deploy - DbDash Documentation</title>
+        <title>Installation - DbDash Documentation</title>
       
     
     
@@ -69,6 +69,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#dbdash-full-stack-installation-guide" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -98,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Build & Deploy
+              Installation
             
           </span>
         </div>
@@ -575,6 +580,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -583,7 +608,7 @@
   <span class="md-ellipsis">
     
   
-    Build & Deploy
+    Installation
   
 
     
@@ -593,34 +618,97 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ci-cd.md" class="md-nav__link">
         
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-  <span class="md-ellipsis">
+  
     
   
-    CI/CD
   
-
-    
-  </span>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stack-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Overview
+      
+    </span>
+  </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
   
-
-      </a>
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-database-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend &amp; Database Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-environment-vite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Environment (Vite)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1166,6 +1254,88 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stack-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-database-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend &amp; Database Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-environment-vite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Environment (Vite)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1185,9 +1355,97 @@
   
 
 
-  <h1>Build & Deploy</h1>
-
-
+<h1 id="dbdash-full-stack-installation-guide">DBDash – Full Stack Installation Guide</h1>
+<p>This document explains how to install, build, and run the complete DBDash stack using Docker and Docker Compose.</p>
+<h2 id="stack-overview">Stack Overview</h2>
+<p>The stack consists of:</p>
+<ul>
+<li>UI: React (Vite) served by Nginx</li>
+<li>API: Backend service (FastAPI / Flask )</li>
+<li>Database: PostgreSQL</li>
+<li>Reverse Proxy: Nginx (inside UI container)</li>
+<li>Container Orchestration: Docker Compose</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>dbdash/
+├── docker-compose.yml
+├── databse/                # PostgreSQL (custom image)
+│   ├── Dockerfile
+│   └── init-seed/
+│       └── init_seed.sql
+├── backend/             # API service
+│   ├── Dockerfile
+│   ├── .env
+│   └── src/
+├── frontend/            # React (Vite) UI
+│   ├── Dockerfile
+│   ├── nginx.conf
+│   ├── .env
+│   ├── .env.production
+│   └── src/
+</code></pre></div></td></tr></table></div>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Ensure the following are installed:
+* Docker ≥ 24.x
+* Docker Compose ≥ v2
+* Git</p>
+<p>Verify installation:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>--version
+docker<span class="w"> </span>compose<span class="w"> </span>version
+git<span class="w"> </span>--version
+</code></pre></div></td></tr></table></div>
+<h2 id="environment-configuration">Environment Configuration</h2>
+<h3 id="backend-database-environment">Backend &amp; Database Environment</h3>
+<p>Create or edit:</p>
+<p><code>backend/.env</code></p>
+<p>Example:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql+asyncpg://apiuser:supersecret@192.168.96.128:5432/dbdash
+<span class="nv">JWT_SECRET</span><span class="o">=</span>A3f9C7bE1D4aF082
+<span class="nv">JWT_ALGORITHM</span><span class="o">=</span>HS256
+<span class="nv">ACCESS_TOKEN_EXPIRY</span><span class="o">=</span><span class="m">3600</span>
+<span class="nv">REFRESH_TOKEN_EXPIRY</span><span class="o">=</span><span class="m">2</span>
+<span class="nv">FILE_DIRECTORY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;uploadfiles&quot;</span>
+<span class="nv">FILE_DIRECTORY_DP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;uploadfiles/dpicture&quot;</span>
+<span class="nv">FILE_DIRECTORY_DP_EXPOSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/static/profile/img&quot;</span>
+</code></pre></div></td></tr></table></div>
+Adjust the envs accordingly. FILE_* can be ignored for this version, it still needs some functionality which is still being worked on.</p>
+<h3 id="frontend-environment-vite">Frontend Environment (Vite)</h3>
+<p>Create or edit:
+<code>frontend/.env</code>
+Example:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">VITE_API_URL</span><span class="o">=</span>http://localhost:8000/api/v1
+</code></pre></div></td></tr></table></div></p>
+<h2 id="docker-compose-configuration">Docker Compose Configuration</h2>
+<p>Key services:</p>
+<ul>
+<li>db → PostgreSQL</li>
+<li>api → Backend API</li>
+<li>ui → React + Nginx frontend</li>
+</ul>
+<p>All services run on the same Docker bridge network.</p>
 
 
 
