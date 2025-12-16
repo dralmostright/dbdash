@@ -586,6 +586,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#quick-installation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Installation Script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-installation-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Installation log
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consoles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consoles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consoles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ui-login-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ui login page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -694,6 +755,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#quick-installation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Installation Script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-installation-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Installation log
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consoles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consoles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consoles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ui-login-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ui login page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -726,6 +848,24 @@
 <li>The directory when the script is being run, the user must have <code>rwx</code> privileges and should be atleast 10G free space.</li>
 <li>Api env file <code>.apienv</code> should be there in directory script being run containing enviornment variables for api</li>
 </ol>
+<p>Below is a simple example of the directory structure.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">[</span>sumanadhikari@mysqlvm1<span class="w"> </span>dbdash<span class="o">]</span>$<span class="w"> </span><span class="nb">pwd</span>
+/workspace/dbdash
+<span class="o">[</span>sumanadhikari@mysqlvm1<span class="w"> </span>dbdash<span class="o">]</span>$<span class="w"> </span>ls<span class="w"> </span>-altr
+total<span class="w"> </span><span class="m">20</span>
+drwxrwxr-x<span class="w"> </span><span class="m">7</span><span class="w"> </span>sumanadhikari<span class="w"> </span>sumanadhikari<span class="w">   </span><span class="m">74</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">09</span>:44<span class="w"> </span>..
+-rw-rw-r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>sumanadhikari<span class="w"> </span>sumanadhikari<span class="w">  </span><span class="m">370</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">02</span>:50<span class="w"> </span>.apienv
+-rwxrwxr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>sumanadhikari<span class="w"> </span>sumanadhikari<span class="w"> </span><span class="m">4173</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">08</span>:17<span class="w"> </span>dbdash.sh
+<span class="o">[</span>sumanadhikari@mysqlvm1<span class="w"> </span>dbdash<span class="o">]</span>$
+</code></pre></div></td></tr></table></div></p>
+<h2 id="quick-installation-script">Quick Installation Script</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
 <span class="normal">  2</span>
 <span class="normal">  3</span>
@@ -1026,6 +1166,456 @@ docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w">
 docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span><span class="w"> </span>dbdash-api
 docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span><span class="w"> </span>dbdash-ui
 </code></pre></div></td></tr></table></div>
+<h2 id="quick-installation-log">Quick Installation log</h2>
+<p>Your execution log's should look like below for successful installation.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">[</span>sumanadhikari@mysqlvm1<span class="w"> </span>dbdash<span class="o">]</span>$<span class="w"> </span>./dbdash.sh
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Checking<span class="w"> </span>required<span class="w"> </span>utilites..
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>docker<span class="w"> </span>found...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>tee<span class="w"> </span>found...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>date<span class="w"> </span>found...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>which<span class="w"> </span>found...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>git<span class="w"> </span>found...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>All<span class="w"> </span>required<span class="w"> </span>utilities<span class="w"> </span>are<span class="w"> </span>present.
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Cleaning<span class="w"> </span>up<span class="w"> </span>old<span class="w"> </span>images<span class="w"> </span>and<span class="w"> </span>directories
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Testing<span class="w"> </span>permissions<span class="w"> </span><span class="k">for</span>:<span class="w"> </span>dbdash-repo
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Testing<span class="w"> </span>permissions<span class="w"> </span><span class="k">for</span>:<span class="w"> </span>dbdash-repo<span class="w"> </span>was<span class="w"> </span>successful..
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Checking<span class="w"> </span>repository<span class="w"> </span>accessibility...<span class="w"> </span>https://github.com/dralmostright/dbdash.git
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:41<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Cloning<span class="w"> </span>repository<span class="w"> </span>...<span class="w"> </span>https://github.com/dralmostright/dbdash.git
+Cloning<span class="w"> </span>into<span class="w"> </span><span class="s1">&#39;dbdash&#39;</span>...
+remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">6354</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">158</span>/158<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">54</span>/54<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">6354</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">59</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">130</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">52</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">6196</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">2</span><span class="o">)</span>
+Receiving<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">6354</span>/6354<span class="o">)</span>,<span class="w"> </span><span class="m">53</span>.70<span class="w"> </span>MiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">3</span>.50<span class="w"> </span>MiB/s,<span class="w"> </span><span class="k">done</span>.
+Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3818</span>/3818<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:58<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Repository<span class="w"> </span>cloned<span class="w"> </span>successfully...
+Error<span class="w"> </span>response<span class="w"> </span>from<span class="w"> </span>daemon:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>image:<span class="w"> </span>dbdash-api:latest
+Error<span class="w"> </span>response<span class="w"> </span>from<span class="w"> </span>daemon:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>image:<span class="w"> </span>dbdash-ui:latest
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:58<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Starting<span class="w"> </span>to<span class="w"> </span>create<span class="w"> </span>DbDash<span class="w"> </span>Stack
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:58<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Copying<span class="w"> </span>Database<span class="w"> </span>Dockerfile...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:58<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Copying<span class="w"> </span>Database<span class="w"> </span>seed<span class="w"> </span>file...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:58<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Copying<span class="w"> </span>main<span class="w"> </span>stack<span class="w"> </span>compose<span class="w"> </span>file...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:58<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Copying<span class="w"> </span>env<span class="w"> </span>file<span class="w"> </span><span class="k">for</span><span class="w"> </span>API...
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:20:58<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span>the<span class="w"> </span>stack...
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Running<span class="w"> </span><span class="m">3</span>/3
+<span class="w"> </span>!<span class="w"> </span>ui<span class="w"> </span>Warning<span class="w">  </span>pull<span class="w"> </span>access<span class="w"> </span>denied<span class="w"> </span><span class="k">for</span><span class="w"> </span>dbdash-ui,<span class="w"> </span>repository<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist<span class="w"> </span>or<span class="w"> </span>may<span class="w"> </span>require<span class="w"> </span><span class="s1">&#39;docker login&#39;</span>:<span class="w"> </span>denied:<span class="w"> </span>requested<span class="w"> </span>access<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>resource<span class="w"> </span>is<span class="w"> </span>denied<span class="w">                                                                            </span><span class="m">0</span>.8s
+<span class="w"> </span>!<span class="w"> </span>db<span class="w"> </span>Warning<span class="w">  </span>pull<span class="w"> </span>access<span class="w"> </span>denied<span class="w"> </span><span class="k">for</span><span class="w"> </span>dbdash-repo,<span class="w"> </span>repository<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist<span class="w"> </span>or<span class="w"> </span>may<span class="w"> </span>require<span class="w"> </span><span class="s1">&#39;docker login&#39;</span>:<span class="w"> </span>denied:<span class="w"> </span>requested<span class="w"> </span>access<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>resource<span class="w"> </span>is<span class="w"> </span>denied<span class="w">                                                                          </span><span class="m">0</span>.8s
+<span class="w"> </span>!<span class="w"> </span>api<span class="w"> </span>Warning<span class="w"> </span>pull<span class="w"> </span>access<span class="w"> </span>denied<span class="w"> </span><span class="k">for</span><span class="w"> </span>dbdash-api,<span class="w"> </span>repository<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist<span class="w"> </span>or<span class="w"> </span>may<span class="w"> </span>require<span class="w"> </span><span class="s1">&#39;docker login&#39;</span>:<span class="w"> </span>denied:<span class="w"> </span>requested<span class="w"> </span>access<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>resource<span class="w"> </span>is<span class="w"> </span>denied<span class="w">                                                                           </span><span class="m">0</span>.9s
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span><span class="m">70</span>.9s<span class="w"> </span><span class="o">(</span><span class="m">35</span>/35<span class="o">)</span><span class="w"> </span><span class="nv">FINISHED</span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span><span class="nb">local</span><span class="w"> </span>bake<span class="w"> </span>definitions<span class="w">                                                                                                                                                                                              </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>reading<span class="w"> </span>from<span class="w"> </span>stdin<span class="w"> </span><span class="m">1</span>.38kB<span class="w">                                                                                                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>definition<span class="w"> </span>from<span class="w"> </span>Dockerfile<span class="w">                                                                                                                                                                                 </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>dockerfile:<span class="w"> </span>492B<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>db<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>definition<span class="w"> </span>from<span class="w"> </span>Dockerfile<span class="w">                                                                                                                                                                                 </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>dockerfile:<span class="w"> </span>312B<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>definition<span class="w"> </span>from<span class="w"> </span>Dockerfile<span class="w">                                                                                                                                                                                </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>dockerfile:<span class="w"> </span>348B<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/library/python:3.11-slim<span class="w">                                                                                                                                                                 </span><span class="m">1</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>db<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/library/postgres:17<span class="w">                                                                                                                                                                       </span><span class="m">1</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/library/nginx:alpine<span class="w">                                                                                                                                                                      </span><span class="m">1</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/library/node:20<span class="w">                                                                                                                                                                           </span><span class="m">1</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>.dockerignore<span class="w">                                                                                                                                                                                                   </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span>2B<span class="w">                                                                                                                                                                                                         </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span><span class="m">1</span>/5<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/library/python:3.11-slim@sha256:158caf0e080e2cd74ef2879ed3c4e697792ee65251c8208b7afb56683c32ea6c<span class="w">                                                                                                           </span><span class="m">7</span>.9s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>resolve<span class="w"> </span>docker.io/library/python:3.11-slim@sha256:158caf0e080e2cd74ef2879ed3c4e697792ee65251c8208b7afb56683c32ea6c<span class="w">                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:1733a4cd59540b3470ff7a90963bcdea5b543279dd6bdaf022d7883fdad221e5<span class="w"> </span><span class="m">29</span>.78MB<span class="w"> </span>/<span class="w"> </span><span class="m">29</span>.78MB<span class="w">                                                                                                                                        </span><span class="m">2</span>.6s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:72cf4c3b83019e176aba979aba419d35f56576bbcfc4f7249a1ab1d4b536730b<span class="w"> </span><span class="m">1</span>.29MB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.29MB<span class="w">                                                                                                                                          </span><span class="m">0</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:4d55cfecf3663813d03c369bcd532b89f41cf07b65d95887ef686538370a747c<span class="w"> </span><span class="m">14</span>.36MB<span class="w"> </span>/<span class="w"> </span><span class="m">14</span>.36MB<span class="w">                                                                                                                                        </span><span class="m">0</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:158caf0e080e2cd74ef2879ed3c4e697792ee65251c8208b7afb56683c32ea6c<span class="w"> </span><span class="m">10</span>.37kB<span class="w"> </span>/<span class="w"> </span><span class="m">10</span>.37kB<span class="w">                                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:26fe52250f1b8012f5061c8f7228e6fca4f100aa3f99b41a8aa2608a42c5db43<span class="w"> </span><span class="m">1</span>.75kB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.75kB<span class="w">                                                                                                                                          </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:cb352e69d7b69f39dbc2cc35ecc34d01ca14439abc55911a5f7932f3dd6bd079<span class="w"> </span><span class="m">5</span>.48kB<span class="w"> </span>/<span class="w"> </span><span class="m">5</span>.48kB<span class="w">                                                                                                                                          </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:3f0cdbca744e7bd0ce0ff6da73b9148829b04309925992954a314ba203f56e99<span class="w"> </span>249B<span class="w"> </span>/<span class="w"> </span>249B<span class="w">                                                                                                                                              </span><span class="m">0</span>.4s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:1733a4cd59540b3470ff7a90963bcdea5b543279dd6bdaf022d7883fdad221e5<span class="w">                                                                                                                                               </span><span class="m">2</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:72cf4c3b83019e176aba979aba419d35f56576bbcfc4f7249a1ab1d4b536730b<span class="w">                                                                                                                                               </span><span class="m">0</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:4d55cfecf3663813d03c369bcd532b89f41cf07b65d95887ef686538370a747c<span class="w">                                                                                                                                               </span><span class="m">1</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:3f0cdbca744e7bd0ce0ff6da73b9148829b04309925992954a314ba203f56e99<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>context<span class="w">                                                                                                                                                                                                   </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span><span class="m">145</span>.01kB<span class="w">                                                                                                                                                                                                   </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>.dockerignore<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span>2B<span class="w">                                                                                                                                                                                                         </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>build<span class="w"> </span><span class="m">1</span>/6<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/library/node:20@sha256:4b4e58e59c5e042928790c6fccd8ad16da6296bcc2e9924c56fba84a8e5ff662<span class="w">                                                                                                              </span><span class="m">28</span>.4s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>resolve<span class="w"> </span>docker.io/library/node:20@sha256:4b4e58e59c5e042928790c6fccd8ad16da6296bcc2e9924c56fba84a8e5ff662<span class="w">                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:e515aa06e178a3a8220d860c09e616c8ed461f216604eef30d2bd2c060afd9c4<span class="w"> </span><span class="m">2</span>.49kB<span class="w"> </span>/<span class="w"> </span><span class="m">2</span>.49kB<span class="w">                                                                                                                                          </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:c8a14e7e1d5835a3952ac83c20b5a859d337b8e6cc1b2eb89f3f4e0125dd516a<span class="w"> </span><span class="m">6</span>.75kB<span class="w"> </span>/<span class="w"> </span><span class="m">6</span>.75kB<span class="w">                                                                                                                                          </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:4b4e58e59c5e042928790c6fccd8ad16da6296bcc2e9924c56fba84a8e5ff662<span class="w"> </span><span class="m">6</span>.41kB<span class="w"> </span>/<span class="w"> </span><span class="m">6</span>.41kB<span class="w">                                                                                                                                          </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3<span class="w"> </span><span class="m">48</span>.48MB<span class="w"> </span>/<span class="w"> </span><span class="m">48</span>.48MB<span class="w">                                                                                                                                        </span><span class="m">2</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11<span class="w"> </span><span class="m">24</span>.03MB<span class="w"> </span>/<span class="w"> </span><span class="m">24</span>.03MB<span class="w">                                                                                                                                        </span><span class="m">2</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc<span class="w"> </span><span class="m">64</span>.40MB<span class="w"> </span>/<span class="w"> </span><span class="m">64</span>.40MB<span class="w">                                                                                                                                        </span><span class="m">5</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:e8d2a98f6bdfdbb1ba3c937c5e47cfa2cd11e74487543d277ca84f21f12ba393<span class="w"> </span><span class="m">211</span>.46MB<span class="w"> </span>/<span class="w"> </span><span class="m">211</span>.46MB<span class="w">                                                                                                                                      </span><span class="m">8</span>.4s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3<span class="w">                                                                                                                                               </span><span class="m">4</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:cf6f22e97faea04f5cd1a36488581b2a212c37a16d0686a72b6eea4914d0d458<span class="w"> </span><span class="m">3</span>.32kB<span class="w"> </span>/<span class="w"> </span><span class="m">3</span>.32kB<span class="w">                                                                                                                                          </span><span class="m">3</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:098202b7b5875d7f0cbee6a5da982f86c91ae03ec3358165a6e7f2a9a4dc003c<span class="w"> </span><span class="m">48</span>.41MB<span class="w"> </span>/<span class="w"> </span><span class="m">48</span>.41MB<span class="w">                                                                                                                                        </span><span class="m">5</span>.6s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:385ae8352fab5a86959ee4e261e38f6c40a9f4f01ea464e10537c220e2fcf605<span class="w"> </span><span class="m">1</span>.25MB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.25MB<span class="w">                                                                                                                                          </span><span class="m">6</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:3e90c76f37ac838b93ab517570c04763bfb894f8e194b9236f68c53550103871<span class="w"> </span>445B<span class="w"> </span>/<span class="w"> </span>445B<span class="w">                                                                                                                                              </span><span class="m">6</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11<span class="w">                                                                                                                                               </span><span class="m">2</span>.5s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc<span class="w">                                                                                                                                               </span><span class="m">4</span>.9s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:e8d2a98f6bdfdbb1ba3c937c5e47cfa2cd11e74487543d277ca84f21f12ba393<span class="w">                                                                                                                                              </span><span class="m">10</span>.9s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:cf6f22e97faea04f5cd1a36488581b2a212c37a16d0686a72b6eea4914d0d458<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:098202b7b5875d7f0cbee6a5da982f86c91ae03ec3358165a6e7f2a9a4dc003c<span class="w">                                                                                                                                               </span><span class="m">2</span>.5s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:385ae8352fab5a86959ee4e261e38f6c40a9f4f01ea464e10537c220e2fcf605<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:3e90c76f37ac838b93ab517570c04763bfb894f8e194b9236f68c53550103871<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>context<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span><span class="m">78</span>.82MB<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.6s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>stage-1<span class="w"> </span><span class="m">1</span>/3<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/library/nginx:alpine@sha256:052b75ab72f690f33debaa51c7e08d9b969a0447a133eb2b99cc905d9188cb2b<span class="w">                                                                                                       </span><span class="m">10</span>.4s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>resolve<span class="w"> </span>docker.io/library/nginx:alpine@sha256:052b75ab72f690f33debaa51c7e08d9b969a0447a133eb2b99cc905d9188cb2b<span class="w">                                                                                                                   </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:052b75ab72f690f33debaa51c7e08d9b969a0447a133eb2b99cc905d9188cb2b<span class="w"> </span><span class="m">10</span>.33kB<span class="w"> </span>/<span class="w"> </span><span class="m">10</span>.33kB<span class="w">                                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:e41316bb39937cebbf2674f26afe9e7bf94b4bbc6a301367891cf85843abfeda<span class="w"> </span><span class="m">2</span>.50kB<span class="w"> </span>/<span class="w"> </span><span class="m">2</span>.50kB<span class="w">                                                                                                                                          </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:a236f84b9d5d27fe4bf2bab07501cccdc8e16bb38a41f83e245216bbd2b61b5c<span class="w"> </span><span class="m">10</span>.98kB<span class="w"> </span>/<span class="w"> </span><span class="m">10</span>.98kB<span class="w">                                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:014e56e613968f73cce0858124ca5fbc601d7888099969a4eea69f31dcd71a53<span class="w"> </span><span class="m">3</span>.86MB<span class="w"> </span>/<span class="w"> </span><span class="m">3</span>.86MB<span class="w">                                                                                                                                          </span><span class="m">6</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:dfad290a5c259f8d1ec1938529f8ef602e335a26680497ad56d38e0727e1a10a<span class="w"> </span><span class="m">1</span>.86MB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.86MB<span class="w">                                                                                                                                          </span><span class="m">6</span>.5s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:5d2cc344426d3d91200b457a771ecfe976de824e165506f5cce5d6b863da1ca9<span class="w"> </span>629B<span class="w"> </span>/<span class="w"> </span>629B<span class="w">                                                                                                                                              </span><span class="m">6</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:abdece946203a31d986f184559f417a33c3a8936a80153b2f0ffa208af4a0d48<span class="w"> </span>954B<span class="w"> </span>/<span class="w"> </span>954B<span class="w">                                                                                                                                              </span><span class="m">7</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:014e56e613968f73cce0858124ca5fbc601d7888099969a4eea69f31dcd71a53<span class="w">                                                                                                                                               </span><span class="m">0</span>.4s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:51c30493937c33bd8b568d8aed09d9596f558d08877b05a5e1855516aba05e1f<span class="w"> </span>403B<span class="w"> </span>/<span class="w"> </span>403B<span class="w">                                                                                                                                              </span><span class="m">7</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:ad5b65da02cfbd43daa87443b87051f3816a10eb7719938d8cb9a96ee828d471<span class="w"> </span><span class="m">1</span>.21kB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.21kB<span class="w">                                                                                                                                          </span><span class="m">7</span>.5s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:fc13532503d72b70e7dd276ae52f2743b14326b83c31935c86d7477c66019dea<span class="w"> </span><span class="m">1</span>.40kB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.40kB<span class="w">                                                                                                                                          </span><span class="m">7</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:dfad290a5c259f8d1ec1938529f8ef602e335a26680497ad56d38e0727e1a10a<span class="w">                                                                                                                                               </span><span class="m">0</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:136bc6976c2023e3363e66b88167d08019fece3e756c162c58754e3819bf4063<span class="w"> </span><span class="m">17</span>.26MB<span class="w"> </span>/<span class="w"> </span><span class="m">17</span>.26MB<span class="w">                                                                                                                                        </span><span class="m">8</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:5d2cc344426d3d91200b457a771ecfe976de824e165506f5cce5d6b863da1ca9<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:abdece946203a31d986f184559f417a33c3a8936a80153b2f0ffa208af4a0d48<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:51c30493937c33bd8b568d8aed09d9596f558d08877b05a5e1855516aba05e1f<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:ad5b65da02cfbd43daa87443b87051f3816a10eb7719938d8cb9a96ee828d471<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:fc13532503d72b70e7dd276ae52f2743b14326b83c31935c86d7477c66019dea<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:136bc6976c2023e3363e66b88167d08019fece3e756c162c58754e3819bf4063<span class="w">                                                                                                                                               </span><span class="m">1</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>db<span class="w"> </span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>.dockerignore<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span>2B<span class="w">                                                                                                                                                                                                         </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>db<span class="w"> </span><span class="m">1</span>/2<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/library/postgres:17@sha256:dca7512acaa113409df7e40d977d801e53c0c8088e45d4311a45b4065ccfdcd3<span class="w">                                                                                                                </span><span class="m">23</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>resolve<span class="w"> </span>docker.io/library/postgres:17@sha256:dca7512acaa113409df7e40d977d801e53c0c8088e45d4311a45b4065ccfdcd3<span class="w">                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:dca7512acaa113409df7e40d977d801e53c0c8088e45d4311a45b4065ccfdcd3<span class="w"> </span><span class="m">10</span>.23kB<span class="w"> </span>/<span class="w"> </span><span class="m">10</span>.23kB<span class="w">                                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:26bb28d37ad007df8a35e13201caa21ba593a0e3994bcd930bb7ac10f7285b35<span class="w"> </span><span class="m">3</span>.63kB<span class="w"> </span>/<span class="w"> </span><span class="m">3</span>.63kB<span class="w">                                                                                                                                          </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:6e8b59d5003cb4ae3f004703392edf481fa4959635c149520462e095efa31bf2<span class="w"> </span><span class="m">10</span>.13kB<span class="w"> </span>/<span class="w"> </span><span class="m">10</span>.13kB<span class="w">                                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:1733a4cd59540b3470ff7a90963bcdea5b543279dd6bdaf022d7883fdad221e5<span class="w"> </span><span class="m">29</span>.78MB<span class="w"> </span>/<span class="w"> </span><span class="m">29</span>.78MB<span class="w">                                                                                                                                        </span><span class="m">2</span>.5s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:1733a4cd59540b3470ff7a90963bcdea5b543279dd6bdaf022d7883fdad221e5<span class="w">                                                                                                                                               </span><span class="m">2</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:c96d81f9e075622dd8281edd1f10d6e927b01a6538e74c658c36957ae5b34d50<span class="w"> </span><span class="m">1</span>.17kB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.17kB<span class="w">                                                                                                                                          </span><span class="m">7</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:c96d81f9e075622dd8281edd1f10d6e927b01a6538e74c658c36957ae5b34d50<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:03ed8dc0f72e37e62afa5b1c665f711dfc24e7fbe11b02274e6fac583aaf5729<span class="w"> </span><span class="m">6</span>.44MB<span class="w"> </span>/<span class="w"> </span><span class="m">6</span>.44MB<span class="w">                                                                                                                                          </span><span class="m">8</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:17c1d47a62446958337213d2b0979b6d352ec216a45fe1461918e4c85a0234dc<span class="w"> </span><span class="m">1</span>.26MB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.26MB<span class="w">                                                                                                                                          </span><span class="m">8</span>.6s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:63c4a8e10901736024f80c1dbbcc2ed85c9482c4ca1f70cf4d2078dcd5627d6d<span class="w"> </span><span class="m">8</span>.20MB<span class="w"> </span>/<span class="w"> </span><span class="m">8</span>.20MB<span class="w">                                                                                                                                          </span><span class="m">8</span>.9s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:07c0e7a5fd20651148ea9148dfc4ad3c2530ce05c6a0f0a0d56c90127884f4ad<span class="w"> </span><span class="m">1</span>.31MB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.31MB<span class="w">                                                                                                                                          </span><span class="m">9</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:03ed8dc0f72e37e62afa5b1c665f711dfc24e7fbe11b02274e6fac583aaf5729<span class="w">                                                                                                                                               </span><span class="m">0</span>.6s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:64010c9502d8276815e749c6984543206c50479fd28cb6f4749b86c95359f9ab<span class="w"> </span>116B<span class="w"> </span>/<span class="w"> </span>116B<span class="w">                                                                                                                                              </span><span class="m">9</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:6b12fd5de7966b374e106b2732b9686958048ce89d0cfbd41c322900192fdbfc<span class="w"> </span><span class="m">3</span>.14kB<span class="w"> </span>/<span class="w"> </span><span class="m">3</span>.14kB<span class="w">                                                                                                                                          </span><span class="m">9</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:cd828e6b8ac748ab91bd67aafb0ed0edebca909d79ee94201fae23b5b46bc5a1<span class="w"> </span><span class="m">114</span>.10MB<span class="w"> </span>/<span class="w"> </span><span class="m">114</span>.10MB<span class="w">                                                                                                                                     </span><span class="m">15</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:e8e96343c58fb443d47c5eebd8715d133efb42cae1e7c88cf8f573f8417311dc<span class="w"> </span><span class="m">10</span>.33kB<span class="w"> </span>/<span class="w"> </span><span class="m">10</span>.33kB<span class="w">                                                                                                                                        </span><span class="m">9</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:8f27e2ecde524d23e9eac6c5bb9f9e737c1cbafa1a899436ce308953f4038f7c<span class="w"> </span>128B<span class="w"> </span>/<span class="w"> </span>128B<span class="w">                                                                                                                                              </span><span class="m">9</span>.5s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:521d2bc0f7769ad596b7e549fd861c39876f5c5671cb5d00f9faac27e717515f<span class="w"> </span>167B<span class="w"> </span>/<span class="w"> </span>167B<span class="w">                                                                                                                                              </span><span class="m">9</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:17c1d47a62446958337213d2b0979b6d352ec216a45fe1461918e4c85a0234dc<span class="w">                                                                                                                                               </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:94820472d21157be6588ae81fae9d5beb906ff2903718364ccf1f1a2e3be603b<span class="w"> </span><span class="m">5</span>.84kB<span class="w"> </span>/<span class="w"> </span><span class="m">5</span>.84kB<span class="w">                                                                                                                                          </span><span class="m">9</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:ffe9c8605fca08cfcef37b23e9d854c8036299bac225d6d11a684db4d5ca6316<span class="w"> </span>184B<span class="w"> </span>/<span class="w"> </span>184B<span class="w">                                                                                                                                              </span><span class="m">9</span>.9s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:63c4a8e10901736024f80c1dbbcc2ed85c9482c4ca1f70cf4d2078dcd5627d6d<span class="w">                                                                                                                                               </span><span class="m">0</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:07c0e7a5fd20651148ea9148dfc4ad3c2530ce05c6a0f0a0d56c90127884f4ad<span class="w">                                                                                                                                               </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:64010c9502d8276815e749c6984543206c50479fd28cb6f4749b86c95359f9ab<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:6b12fd5de7966b374e106b2732b9686958048ce89d0cfbd41c322900192fdbfc<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:cd828e6b8ac748ab91bd67aafb0ed0edebca909d79ee94201fae23b5b46bc5a1<span class="w">                                                                                                                                               </span><span class="m">6</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:e8e96343c58fb443d47c5eebd8715d133efb42cae1e7c88cf8f573f8417311dc<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:8f27e2ecde524d23e9eac6c5bb9f9e737c1cbafa1a899436ce308953f4038f7c<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:521d2bc0f7769ad596b7e549fd861c39876f5c5671cb5d00f9faac27e717515f<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:94820472d21157be6588ae81fae9d5beb906ff2903718364ccf1f1a2e3be603b<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:ffe9c8605fca08cfcef37b23e9d854c8036299bac225d6d11a684db4d5ca6316<span class="w">                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span><span class="m">2</span>/5<span class="o">]</span><span class="w"> </span>WORKDIR<span class="w"> </span>/app<span class="w">                                                                                                                                                                                                              </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span><span class="m">3</span>/5<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>requirements.txt<span class="w"> </span>.<span class="w">                                                                                                                                                                                                   </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span><span class="m">4</span>/5<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">                                                                                                                                                                       </span><span class="m">29</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>db<span class="w"> </span><span class="m">2</span>/2<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w">       </span>postgresql-server-dev-17<span class="w">       </span>postgresql-17-cron<span class="w">       </span>postgresql-17-partman<span class="w">       </span>postgresql-contrib<span class="w">     </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*<span class="w">          </span><span class="m">36</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>build<span class="w"> </span><span class="m">2</span>/6<span class="o">]</span><span class="w"> </span>WORKDIR<span class="w"> </span>/app<span class="w">                                                                                                                                                                                                         </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>build<span class="w"> </span><span class="m">3</span>/6<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>package*.json<span class="w"> </span>./<span class="w">                                                                                                                                                                                                </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>build<span class="w"> </span><span class="m">4</span>/6<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>npm<span class="w"> </span>install<span class="w">                                                                                                                                                                                                     </span><span class="m">10</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="w"> </span><span class="m">5</span>/5<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>.<span class="w"> </span>.<span class="w">                                                                                                                                                                                                                  </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="o">]</span><span class="w"> </span>exporting<span class="w"> </span>to<span class="w"> </span>image<span class="w">                                                                                                                                                                                                           </span><span class="m">11</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>layers<span class="w">                                                                                                                                                                                                                </span><span class="m">11</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>writing<span class="w"> </span>image<span class="w"> </span>sha256:dfb915d59f7fb96559da5cf5405d1cbda5bb6ab33a4ab84ae4f1131f0f10e961<span class="w">                                                                                                                                            </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>naming<span class="w"> </span>to<span class="w"> </span>docker.io/library/dbdash-api<span class="w">                                                                                                                                                                                           </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>build<span class="w"> </span><span class="m">5</span>/6<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>.<span class="w"> </span>.<span class="w">                                                                                                                                                                                                             </span><span class="m">0</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>build<span class="w"> </span><span class="m">6</span>/6<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w">                                                                                                                                                                                                   </span><span class="m">16</span>.4s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>api<span class="o">]</span><span class="w"> </span>resolving<span class="w"> </span>provenance<span class="w"> </span><span class="k">for</span><span class="w"> </span>metadata<span class="w"> </span>file<span class="w">                                                                                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>stage-1<span class="w"> </span><span class="m">2</span>/3<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/app/dist<span class="w"> </span>/usr/share/nginx/html<span class="w">                                                                                                                                                                  </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="w"> </span>stage-1<span class="w"> </span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>nginx.conf<span class="w"> </span>/etc/nginx/conf.d/default.conf<span class="w">                                                                                                                                                                     </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="o">]</span><span class="w"> </span>exporting<span class="w"> </span>to<span class="w"> </span>image<span class="w">                                                                                                                                                                                                             </span><span class="m">0</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>layers<span class="w">                                                                                                                                                                                                                 </span><span class="m">0</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>writing<span class="w"> </span>image<span class="w"> </span>sha256:75de3f51dd70f5c2698b4ace484bc9e7ec71ae36595bbba2c9f21d3944ece495<span class="w">                                                                                                                                            </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>naming<span class="w"> </span>to<span class="w"> </span>docker.io/library/dbdash-ui<span class="w">                                                                                                                                                                                            </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>ui<span class="o">]</span><span class="w"> </span>resolving<span class="w"> </span>provenance<span class="w"> </span><span class="k">for</span><span class="w"> </span>metadata<span class="w"> </span>file<span class="w">                                                                                                                                                                                         </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>db<span class="o">]</span><span class="w"> </span>exporting<span class="w"> </span>to<span class="w"> </span>image<span class="w">                                                                                                                                                                                                             </span><span class="m">9</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>layers<span class="w">                                                                                                                                                                                                                 </span><span class="m">9</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>writing<span class="w"> </span>image<span class="w"> </span>sha256:297dd43f7e57507981362ed728cfd4e74b05f2fc4fda33b09a4f9c0e5d6b0c0c<span class="w">                                                                                                                                            </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>naming<span class="w"> </span>to<span class="w"> </span>docker.io/library/dbdash-repo<span class="w">                                                                                                                                                                                          </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>db<span class="o">]</span><span class="w"> </span>resolving<span class="w"> </span>provenance<span class="w"> </span><span class="k">for</span><span class="w"> </span>metadata<span class="w"> </span>file<span class="w">                                                                                                                                                                                         </span><span class="m">0</span>.0s
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Running<span class="w"> </span><span class="m">7</span>/7
+<span class="w"> </span>✔<span class="w"> </span>dbdash-ui<span class="w">                   </span>Built<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span>✔<span class="w"> </span>dbdash-repo<span class="w">                 </span>Built<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span>✔<span class="w"> </span>dbdash-api<span class="w">                  </span>Built<span class="w">                                                                                                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span>✔<span class="w"> </span>Network<span class="w"> </span>dbdash_app-network<span class="w">  </span>Created<span class="w">                                                                                                                                                                                                  </span><span class="m">0</span>.1s
+<span class="w"> </span>✔<span class="w"> </span>Container<span class="w"> </span>dbdash-repo<span class="w">       </span>Started<span class="w">                                                                                                                                                                                                  </span><span class="m">0</span>.3s
+<span class="w"> </span>✔<span class="w"> </span>Container<span class="w"> </span>dbdash-api<span class="w">        </span>Started<span class="w">                                                                                                                                                                                                  </span><span class="m">0</span>.4s
+<span class="w"> </span>✔<span class="w"> </span>Container<span class="w"> </span>dbdash-ui<span class="w">         </span>Started<span class="w">                                                                                                                                                                                                  </span><span class="m">0</span>.7s
+<span class="o">[</span><span class="m">2025</span>-12-16<span class="w"> </span><span class="m">23</span>:22:11<span class="o">]</span><span class="w"> </span><span class="o">[</span>info<span class="o">]</span><span class="w"> </span>DbDash<span class="w"> </span>stack<span class="w"> </span>created<span class="w"> </span>successfully.
+The<span class="w"> </span>files<span class="w"> </span>belonging<span class="w"> </span>to<span class="w"> </span>this<span class="w"> </span>database<span class="w"> </span>system<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>owned<span class="w"> </span>by<span class="w"> </span>user<span class="w"> </span><span class="s2">&quot;postgres&quot;</span>.
+This<span class="w"> </span>user<span class="w"> </span>must<span class="w"> </span>also<span class="w"> </span>own<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>process.
+
+The<span class="w"> </span>database<span class="w"> </span>cluster<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>initialized<span class="w"> </span>with<span class="w"> </span>locale<span class="w"> </span><span class="s2">&quot;en_US.utf8&quot;</span>.
+The<span class="w"> </span>default<span class="w"> </span>database<span class="w"> </span>encoding<span class="w"> </span>has<span class="w"> </span>accordingly<span class="w"> </span>been<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;UTF8&quot;</span>.
+The<span class="w"> </span>default<span class="w"> </span>text<span class="w"> </span>search<span class="w"> </span>configuration<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;english&quot;</span>.
+
+Data<span class="w"> </span>page<span class="w"> </span>checksums<span class="w"> </span>are<span class="w"> </span>disabled.
+
+fixing<span class="w"> </span>permissions<span class="w"> </span>on<span class="w"> </span>existing<span class="w"> </span>directory<span class="w"> </span>/var/lib/postgresql/data<span class="w"> </span>...<span class="w"> </span>ok
+creating<span class="w"> </span>subdirectories<span class="w"> </span>...<span class="w"> </span>ok
+selecting<span class="w"> </span>dynamic<span class="w"> </span>shared<span class="w"> </span>memory<span class="w"> </span>implementation<span class="w"> </span>...<span class="w"> </span>posix
+selecting<span class="w"> </span>default<span class="w"> </span><span class="s2">&quot;max_connections&quot;</span><span class="w"> </span>...<span class="w"> </span><span class="m">100</span>
+selecting<span class="w"> </span>default<span class="w"> </span><span class="s2">&quot;shared_buffers&quot;</span><span class="w"> </span>...<span class="w"> </span>128MB
+selecting<span class="w"> </span>default<span class="w"> </span><span class="nb">time</span><span class="w"> </span>zone<span class="w"> </span>...<span class="w"> </span>Etc/UTC
+creating<span class="w"> </span>configuration<span class="w"> </span>files<span class="w"> </span>...<span class="w"> </span>ok
+running<span class="w"> </span>bootstrap<span class="w"> </span>script<span class="w"> </span>...<span class="w"> </span>ok
+/docker-entrypoint.sh:<span class="w"> </span>/docker-entrypoint.d/<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>empty,<span class="w"> </span>will<span class="w"> </span>attempt<span class="w"> </span>to<span class="w"> </span>perform<span class="w"> </span>configuration
+/docker-entrypoint.sh:<span class="w"> </span>Looking<span class="w"> </span><span class="k">for</span><span class="w"> </span>shell<span class="w"> </span>scripts<span class="w"> </span><span class="k">in</span><span class="w"> </span>/docker-entrypoint.d/
+/docker-entrypoint.sh:<span class="w"> </span>Launching<span class="w"> </span>/docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+<span class="m">10</span>-listen-on-ipv6-by-default.sh:<span class="w"> </span>info:<span class="w"> </span>Getting<span class="w"> </span>the<span class="w"> </span>checksum<span class="w"> </span>of<span class="w"> </span>/etc/nginx/conf.d/default.conf
+<span class="m">10</span>-listen-on-ipv6-by-default.sh:<span class="w"> </span>info:<span class="w"> </span>/etc/nginx/conf.d/default.conf<span class="w"> </span>differs<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>packaged<span class="w"> </span>version
+/docker-entrypoint.sh:<span class="w"> </span>Sourcing<span class="w"> </span>/docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh:<span class="w"> </span>Launching<span class="w"> </span>/docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh:<span class="w"> </span>Launching<span class="w"> </span>/docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh:<span class="w"> </span>Configuration<span class="w"> </span>complete<span class="p">;</span><span class="w"> </span>ready<span class="w"> </span><span class="k">for</span><span class="w"> </span>start<span class="w"> </span>up
+<span class="m">2025</span>/12/16<span class="w"> </span><span class="m">17</span>:37:11<span class="w"> </span><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="c1">#1: using the &quot;epoll&quot; event method</span>
+<span class="m">2025</span>/12/16<span class="w"> </span><span class="m">17</span>:37:11<span class="w"> </span><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="c1">#1: nginx/1.29.4</span>
+<span class="m">2025</span>/12/16<span class="w"> </span><span class="m">17</span>:37:11<span class="w"> </span><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="c1">#1: built by gcc 15.2.0 (Alpine 15.2.0)</span>
+<span class="m">2025</span>/12/16<span class="w"> </span><span class="m">17</span>:37:11<span class="w"> </span><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="c1">#1: OS: Linux 5.4.17-2102.201.3.el8uek.x86_64</span>
+<span class="m">2025</span>/12/16<span class="w"> </span><span class="m">17</span>:37:11<span class="w"> </span><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="c1">#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576</span>
+<span class="m">2025</span>/12/16<span class="w"> </span><span class="m">17</span>:37:11<span class="w"> </span><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="c1">#1: start worker processes</span>
+<span class="m">2025</span>/12/16<span class="w"> </span><span class="m">17</span>:37:11<span class="w"> </span><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="c1">#1: start worker process 29</span>
+<span class="m">2025</span>/12/16<span class="w"> </span><span class="m">17</span>:37:11<span class="w"> </span><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="c1">#1: start worker process 30</span>
+<span class="o">[</span>sumanadhikari@mysqlvm1<span class="w"> </span>dbdash<span class="o">]</span>$<span class="w"> </span>docker<span class="w"> </span>ps
+CONTAINER<span class="w"> </span>ID<span class="w">   </span>IMAGE<span class="w">                   </span>COMMAND<span class="w">                  </span>CREATED<span class="w">         </span>STATUS<span class="w">          </span>PORTS<span class="w">                                              </span>NAMES
+59d2c0852a1b<span class="w">   </span>dbdash-ui<span class="w">               </span><span class="s2">&quot;/docker-entrypoint.…&quot;</span><span class="w">   </span><span class="m">9</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">   </span>Up<span class="w"> </span><span class="m">9</span><span class="w"> </span>minutes<span class="w">    </span><span class="m">0</span>.0.0.0:3000-&gt;80/tcp,<span class="w"> </span><span class="o">[</span>::<span class="o">]</span>:3000-&gt;80/tcp<span class="w">            </span>dbdash-ui
+834f3be15faf<span class="w">   </span>dbdash-api<span class="w">              </span><span class="s2">&quot;fastapi run src --p…&quot;</span><span class="w">   </span><span class="m">9</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">   </span>Up<span class="w"> </span><span class="m">9</span><span class="w"> </span>minutes<span class="w">    </span><span class="m">0</span>.0.0.0:8000-&gt;8000/tcp,<span class="w"> </span><span class="o">[</span>::<span class="o">]</span>:8000-&gt;8000/tcp<span class="w">        </span>dbdash-api
+8f44511726ab<span class="w">   </span>dbdash-repo<span class="w">             </span><span class="s2">&quot;docker-entrypoint.s…&quot;</span><span class="w">   </span><span class="m">9</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">   </span>Up<span class="w"> </span><span class="m">9</span><span class="w"> </span>minutes<span class="w">    </span><span class="m">0</span>.0.0.0:5432-&gt;5432/tcp,<span class="w"> </span><span class="o">[</span>::<span class="o">]</span>:5432-&gt;5432/tcp<span class="w">        </span>dbdash-repo
+5df2d87c9560<span class="w">   </span>dpage/pgadmin4:latest<span class="w">   </span><span class="s2">&quot;/entrypoint.sh&quot;</span><span class="w">         </span><span class="m">9</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">      </span>Up<span class="w"> </span><span class="m">52</span><span class="w"> </span>minutes<span class="w">   </span><span class="m">443</span>/tcp,<span class="w"> </span><span class="m">0</span>.0.0.0:8080-&gt;80/tcp,<span class="w"> </span><span class="o">[</span>::<span class="o">]</span>:8080-&gt;80/tcp<span class="w">   </span>pgadmin
+<span class="o">[</span>sumanadhikari@mysqlvm1<span class="w"> </span>dbdash<span class="o">]</span>$
+</code></pre></div></td></tr></table></div></p>
+<h2 id="consoles">Consoles</h2>
+<p>If your installation are successful you should see below URL's working.</p>
+<h3 id="ui-login-page">Ui login page</h3>
+<p><img alt="DbDash - UI" src="../../imgs/login-1.jpg" /></p>
+<h3 id="api-docs">API Docs</h3>
+<p><img alt="DbDash - API" src="../../imgs/api-1.jpg" /></p>
 
 
 
