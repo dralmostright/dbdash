@@ -683,6 +683,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1067,6 +1078,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1257,6 +1279,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsinstances</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">riid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rds_aws_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">rds_identifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">rds_instanceclass</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">rds_engine</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
@@ -1284,8 +1307,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">rds_subnets</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">rds_backupretention</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">rds_taglist</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">rds_datacollectiondate</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">rds_aws_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rds_datacollectiondate</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
 <span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsinstances_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">riid</span><span class="p">,</span><span class="w"> </span><span class="n">created_at</span><span class="p">),</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsinstances_rds_aws_id_fkey</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">rds_aws_id</span><span class="p">)</span>
@@ -1322,14 +1344,18 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsawsmap</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdsawsmap</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">raid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">aws_aid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">last_collection_at</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">rds_riid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
-<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsawsmap_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">raid</span><span class="p">),</span>
+<span class="w">    </span><span class="n">aws_aid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rds_riid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">map_rds_identifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">map_rds_az</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">last_collection_at</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsawsmap_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">raid</span><span class="p">,</span><span class="w"> </span><span class="n">rds_riid</span><span class="p">),</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdsawsmap_aws_aid_fkey</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">aws_aid</span><span class="p">)</span>
 <span class="w">        </span><span class="k">REFERENCES</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">awsaccounts</span><span class="w"> </span><span class="p">(</span><span class="n">aid</span><span class="p">)</span><span class="w"> </span><span class="k">MATCH</span><span class="w"> </span><span class="k">SIMPLE</span>
 <span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span>
@@ -1684,6 +1710,26 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- every day at 2 AM</span>
 <span class="w">    </span><span class="err">$$</span><span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">run_maintenance</span><span class="p">(</span><span class="s1">&#39;public.rdssecrules&#39;</span><span class="p">);</span><span class="err">$$</span>
 <span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="notes">Notes</h3>
+<p>The Tables can be created by the by api itself, but due to partitions feature not enabled via ORM the above partitions script are being shared, if those are not needed then the following line needs to be uncommented and it will create all the required tables and their properties as needed.</p>
+<pre>
+dbdash/
+├── backend/
+│   ├── src/
+│   │   ├── db/
+│   │       ├── main.py    ===> This file needs to be modified.
+<pre>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">init_db</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="c1">#from src.db.models import User</span>
+        <span class="c1">#await conn.run_sync(SQLModel.metadata.create_all) ====&gt; this needs to be uncommented </span>
+        <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
 
 
