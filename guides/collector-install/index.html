@@ -650,6 +650,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Cross-Account Access Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#target-account-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target Account Setup:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -747,6 +764,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Cross-Account Access Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#target-account-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target Account Setup:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -838,12 +872,14 @@
         |                                           | 5. Respond with RDS Metadata
         |&lt;------------------------------------------|
 </code></pre></div></td></tr></table></div></p>
-<p>Target Account Setup:
-1. Create an IAM Role in Account B (Target Account)
-2. Go to Account B → IAM → Roles → Create role
-3. Choose type: Another AWS account
-4. Enter Account A ID (This defines who can assume the role)
-5. Attach permissions policy to the role (inline or managed)
+<h4 id="target-account-setup">Target Account Setup:</h4>
+<ol>
+<li>Create an IAM Role in Account B (Target Account)</li>
+<li>Go to Account B → IAM → Roles → Create role</li>
+<li>Choose type: Another AWS account</li>
+<li>Enter Account A ID (This defines who can assume the role)</li>
+<li>
+<p>Attach permissions policy to the role (inline or managed)
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -886,8 +922,10 @@
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
-<ol>
-<li>Define the Trust Policy (Account B)</li>
+</li>
+<li>
+<p>Define the Trust Policy (Account B)</p>
+</li>
 </ol>
 <p>The trust policy specifies who can assume the role. Example:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
