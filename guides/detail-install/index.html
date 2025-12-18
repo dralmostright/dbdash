@@ -18,6 +18,8 @@
         <link rel="prev" href="../quick-install/">
       
       
+        <link rel="next" href="../collector-install/">
+      
       
         
       
@@ -684,10 +686,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#seed-the-database-with-custom-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seed the database with custom data.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seed the database with custom data.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisite-for-seeding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite for seeding.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collector-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collector Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -836,6 +894,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#seed-the-database-with-custom-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seed the database with custom data.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seed the database with custom data.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisite-for-seeding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite for seeding.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -962,6 +1048,30 @@ Adjust the envs accordingly. FILE_* can be ignored for this version, it still ne
 <li>Configure the nginx config</li>
 <li>Start the nginx service</li>
 </ol>
+<h2 id="seed-the-database-with-custom-data">Seed the database with custom data.</h2>
+<p>The repo comes with a script to seed the database with temporary data, which can be used to check the funcationality of the entire stack and later the data can be truncated. The Script creates a temporary container and runs the data load job and cleanups everything.</p>
+<p>To seed the database with temporary data, you need to run the script with below command, which was discussed in quick installation. 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./dbdash.sh<span class="w"> </span>seed
+</code></pre></div></td></tr></table></div></p>
+<h3 id="prerequisite-for-seeding">Prerequisite for seeding.</h3>
+<p>Environment file will be needed containing the api endpoints and credentials to work and seed the data and its format should look like below:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">RDSAPI_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nv">RDSPARAMS_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nv">RDSSECRULES_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nv">API_USERNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;admin@dbdash.com&quot;</span>
+<span class="nv">API_PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Test@1234&quot;</span>
+<span class="nv">API_TOKEN_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://api:8000/api/v1/auth/login&quot;</span>
+<span class="nv">API_AZ_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://api:8000/api/v1/aws/org/byaccount&quot;</span>
+<span class="nv">API_BASE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://api:8000/api/v1&quot;</span>
+</code></pre></div></td></tr></table></div></p>
+<p>The data seeded are completely random but they comply with the motive with which the app was made.</p>
 
 
 

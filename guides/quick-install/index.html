@@ -695,6 +695,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collector-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collector Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1037,7 +1065,15 @@ drwxrwxr-x<span class="w"> </span><span class="m">7</span><span class="w"> </spa
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="k">function</span><span class="w"> </span>log_message<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">message</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
@@ -1187,6 +1223,14 @@ docker<span class="w"> </span>ps<span class="w"> </span>-a
 docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span><span class="w"> </span>dbdash-repo
 docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span><span class="w"> </span>dbdash-api
 docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span><span class="w"> </span>dbdash-ui
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;seed&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span>
+<span class="k">then</span>
+log_message<span class="w"> </span><span class="s2">&quot;[info] Seeding database with demo data..&quot;</span>
+log_message<span class="w"> </span><span class="s2">&quot;[info] Creating one off docker image/container to seed database..&quot;</span>
+docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>./dbdash/collector/Dockerfile.seeder<span class="w"> </span>-t<span class="w"> </span>seeder-oneoff<span class="w"> </span>./dbdash/collector/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>dbdash_app-network<span class="w"> </span>seeder-oneoff<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+docker<span class="w"> </span>rmi<span class="w"> </span>seeder-oneoff
+<span class="k">fi</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="quick-installation-log">Quick Installation log</h2>
 <p>Your execution log's should look like below for successful installation.
