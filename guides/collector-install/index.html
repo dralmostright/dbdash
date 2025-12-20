@@ -650,23 +650,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Cross-Account Access Flow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#target-account-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Target Account Setup:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -764,23 +747,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Cross-Account Access Flow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#target-account-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Target Account Setup:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -872,14 +838,8 @@
         |                                           | 5. Respond with RDS Metadata
         |&lt;------------------------------------------|
 </code></pre></div></td></tr></table></div></p>
-<h4 id="target-account-setup">Target Account Setup:</h4>
-<ol>
-<li>Create an IAM Role in Account B (Target Account)</li>
-<li>Go to Account B → IAM → Roles → Create role</li>
-<li>Choose type: Another AWS account</li>
-<li>Enter Account A ID (This defines who can assume the role)</li>
-<li>
-<p>Attach permissions policy to the role (inline or managed)
+<p>Account A
+Create a collector policy <code>DbDashCollectorPolicy</code>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -922,12 +882,73 @@
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p>Define the Trust Policy (Account B)</p>
-</li>
-</ol>
-<p>The trust policy specifies who can assume the role. Example:
+<p>Create new role <code>DbDashCollectorRole</code>with Trust policy
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Principal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Service&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ec2.amazonaws.com&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sts:AssumeRole&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Create policy point to Remote Account <code>DbDashCollectorRemotePolicy</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DbDashCollectorRemoteRole&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sts:AssumeRole&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::Account_B_ID:role/DbDashCollectorRemoteRole&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Create instance profile
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">iam</span><span class="w"> </span><span class="err">crea</span><span class="kc">te</span><span class="mi">-</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="mi">--</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="mi">-</span><span class="kc">na</span><span class="err">me</span><span class="w"> </span><span class="err">DbDashCollec</span><span class="kc">t</span><span class="err">orPro</span><span class="kc">f</span><span class="err">ile</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Add role to the instance profile
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">iam</span><span class="w"> </span><span class="err">add</span><span class="mi">-</span><span class="err">role</span><span class="mi">-</span><span class="kc">t</span><span class="err">o</span><span class="mi">-</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">\</span>
+<span class="mi">--</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="mi">-</span><span class="kc">na</span><span class="err">me</span><span class="w"> </span><span class="err">DbDashCollec</span><span class="kc">t</span><span class="err">orPro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">\</span>
+<span class="mi">--</span><span class="err">role</span><span class="mi">-</span><span class="kc">na</span><span class="err">me</span><span class="w"> </span><span class="err">DbDashCollec</span><span class="kc">t</span><span class="err">orRole</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Associate the profile to the ec2 instance
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">ec</span><span class="mi">2</span><span class="w"> </span><span class="err">associa</span><span class="kc">te</span><span class="mi">-</span><span class="err">iam</span><span class="mi">-</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">\</span>
+<span class="mi">--</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">id</span><span class="w"> </span><span class="err">&lt;EC</span><span class="mi">2</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ceID&gt;</span><span class="w"> </span><span class="err">\</span>
+<span class="mi">--</span><span class="err">iam</span><span class="mi">-</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">Name=&lt;EC</span><span class="mi">2</span><span class="err">I</span><span class="kc">nstan</span><span class="err">cePro</span><span class="kc">f</span><span class="err">ile&gt;</span><span class="w"> </span>
+</code></pre></div></td></tr></table></div></p>
+<p>On Target Account:
+Create policy to collect info <code>DbDashCollectorPolicy</code>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -940,29 +961,95 @@
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBInstances&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBSecurityGroups&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterParameterGroups&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterParameters&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusters&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBParameterGroups&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBParameters&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterEndpoints&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshotAttributes&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshots&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Create Role <code>DbDashCollectorRemoteRole</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;Principal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;AWS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::111122223333:root&quot;</span>
+<span class="w">        </span><span class="nt">&quot;AWS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::350437859186:role/DbDashCollectorRole&quot;</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sts:AssumeRole&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sts:AssumeRole&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
-<p>Notes:</p>
-<p>111122223333 → Account A ID</p>
-<p>Principal.AWS can also point to a specific role in Account A for tighter security:
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&quot;Principal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;AWS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::111122223333:role/DescribeRDSRole&quot;</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div></p>
+<p>Validate the setup</p>
+<p>aws sts assume-role \
+  --role-arn arn:aws:iam:::role/DbDashCollectorRemoteRole \
+  --role-session-name test &gt; creds.json</p>
+<p>ubuntu@ip-172-31-37-234:~$ aws sts assume-role \
+  --role-arn arn:aws:iam:::role/DbDashCollectorRemoteRole \
+  --role-session-name test &gt; creds.json
+ubuntu@ip-172-31-37-234:~$ cat creds.json
+{
+    "Credentials": {
+        "AccessKeyId": "",
+        "SecretAccessKey": "",
+        "SessionToken": "",
+        "Expiration": "2025-12-19T05:55:12+00:00"
+    },
+    "AssumedRoleUser": {
+        "AssumedRoleId": ":test",
+        "Arn": "arn:aws:sts:::assumed-role/DbDashCollectorRemoteRole/test"
+    }
+}
+ubuntu@ip-172-31-37-234:~$
+ubuntu@ip-172-31-37-234:~$
+ubuntu@ip-172-31-37-234:~$ export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' creds.json)
+export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' creds.json)
+export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' creds.json)
+ubuntu@ip-172-31-37-234:~$
+ubuntu@ip-172-31-37-234:~$
+ubuntu@ip-172-31-37-234:~$ env | grep AWS
+AWS_SECRET_ACCESS_KEY=
+AWS_ACCESS_KEY_ID=
+AWS_SESSION_TOKEN=
+ubuntu@ip-172-31-37-234:~$
+ubuntu@ip-172-31-37-234:~$
+ubuntu@ip-172-31-37-234:~$ aws rds describe-db-instances --region us-east-1</p>
 <p>This ensures only that role in Account A can assume this role in Account B.</p>
 
 
