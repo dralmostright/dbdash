@@ -779,6 +779,48 @@
 <p>The collector script can be setup in two ways 
 1. Set up as corn jobs
 2. RealTime refresh</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">UTC</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">json</span><span class="o">,</span><span class="nn">httpx</span><span class="o">,</span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">pytz</span><span class="o">,</span><span class="w"> </span><span class="nn">logging</span><span class="o">,</span><span class="nn">sys</span><span class="o">,</span><span class="nn">uuid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">botocore.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientError</span><span class="p">,</span> <span class="n">BotoCoreError</span>
+
+<span class="sd">&quot;&quot;&quot;_summary_</span>
+
+<span class="sd">Raises:</span>
+<span class="sd">    RuntimeError: _description_</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">    _type_: _description_</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">az</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">role_arn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">aws_account_number</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">account_aid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">AWS_REGION</span><span class="o">=</span><span class="n">az</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ROLE_ARN</span><span class="o">=</span><span class="n">role_arn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">AWS_ACCOUNT_NUMBER</span><span class="o">=</span><span class="n">aws_account_number</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">API_TOKEN</span><span class="o">=</span><span class="n">api_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ACCOUNT_AID</span><span class="o">=</span><span class="n">account_aid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">=</span><span class="n">logger</span>
+</code></pre></div></td></tr></table></div>
 <h2 id="privileges-required">Privileges required</h2>
 <h3 id="cross-account-access-flow">Cross-Account Access Flow</h3>
 <ul>
@@ -860,7 +902,8 @@ Create a collector policy <code>DbDashCollectorPolicy</code>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -875,7 +918,8 @@ Create a collector policy <code>DbDashCollectorPolicy</code>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBParameters&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterEndpoints&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshotAttributes&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshots&quot;</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshots&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;ec2:DescribeSecurityGroups&quot;</span>
 <span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -969,7 +1013,8 @@ Create policy to collect info <code>DbDashCollectorPolicy</code>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -984,7 +1029,8 @@ Create policy to collect info <code>DbDashCollectorPolicy</code>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBParameters&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterEndpoints&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshotAttributes&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshots&quot;</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshots&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;ec2:DescribeSecurityGroups&quot;</span>
 <span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1017,39 +1063,78 @@ Create policy to collect info <code>DbDashCollectorPolicy</code>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
 <p>Validate the setup</p>
-<p>aws sts assume-role \
-  --role-arn arn:aws:iam:::role/DbDashCollectorRemoteRole \
-  --role-session-name test &gt; creds.json</p>
-<p>ubuntu@ip-172-31-37-234:~$ aws sts assume-role \
-  --role-arn arn:aws:iam:::role/DbDashCollectorRemoteRole \
-  --role-session-name test &gt; creds.json
-ubuntu@ip-172-31-37-234:~$ cat creds.json
-{
-    "Credentials": {
-        "AccessKeyId": "",
-        "SecretAccessKey": "",
-        "SessionToken": "",
-        "Expiration": "2025-12-19T05:55:12+00:00"
-    },
-    "AssumedRoleUser": {
-        "AssumedRoleId": ":test",
-        "Arn": "arn:aws:sts:::assumed-role/DbDashCollectorRemoteRole/test"
-    }
-}
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role-arn<span class="w"> </span>arn:aws:iam:::role/DbDashCollectorRemoteRole<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role-session-name<span class="w"> </span><span class="nb">test</span><span class="w"> </span>&gt;<span class="w"> </span>creds.json
+
+
+ubuntu@ip-172-31-37-234:~$<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role-arn<span class="w"> </span>arn:aws:iam:::role/DbDashCollectorRemoteRole<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role-session-name<span class="w"> </span><span class="nb">test</span><span class="w"> </span>&gt;<span class="w"> </span>creds.json
+ubuntu@ip-172-31-37-234:~$<span class="w"> </span>cat<span class="w"> </span>creds.json
+<span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;Credentials&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;AccessKeyId&quot;</span>:<span class="w"> </span><span class="s2">&quot;&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;SecretAccessKey&quot;</span>:<span class="w"> </span><span class="s2">&quot;&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;SessionToken&quot;</span>:<span class="w"> </span><span class="s2">&quot;&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;Expiration&quot;</span>:<span class="w"> </span><span class="s2">&quot;2025-12-19T05:55:12+00:00&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="s2">&quot;AssumedRoleUser&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;AssumedRoleId&quot;</span>:<span class="w"> </span><span class="s2">&quot;:test&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;Arn&quot;</span>:<span class="w"> </span><span class="s2">&quot;arn:aws:sts:::assumed-role/DbDashCollectorRemoteRole/test&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">}</span>
 ubuntu@ip-172-31-37-234:~$
 ubuntu@ip-172-31-37-234:~$
-ubuntu@ip-172-31-37-234:~$ export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' creds.json)
-export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' creds.json)
-export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' creds.json)
+ubuntu@ip-172-31-37-234:~$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.Credentials.AccessKeyId&#39;</span><span class="w"> </span>creds.json<span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.Credentials.SecretAccessKey&#39;</span><span class="w"> </span>creds.json<span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.Credentials.SessionToken&#39;</span><span class="w"> </span>creds.json<span class="k">)</span>
 ubuntu@ip-172-31-37-234:~$
 ubuntu@ip-172-31-37-234:~$
-ubuntu@ip-172-31-37-234:~$ env | grep AWS
-AWS_SECRET_ACCESS_KEY=
-AWS_ACCESS_KEY_ID=
-AWS_SESSION_TOKEN=
+
+ubuntu@ip-172-31-37-234:~$<span class="w"> </span>env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>AWS
+<span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>
+<span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>
+<span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span>
 ubuntu@ip-172-31-37-234:~$
 ubuntu@ip-172-31-37-234:~$
-ubuntu@ip-172-31-37-234:~$ aws rds describe-db-instances --region us-east-1</p>
+ubuntu@ip-172-31-37-234:~$<span class="w"> </span>aws<span class="w"> </span>rds<span class="w"> </span>describe-db-instances<span class="w"> </span>--region<span class="w"> </span>us-east-1
+</code></pre></div></td></tr></table></div>
 <p>This ensures only that role in Account A can assume this role in Account B.</p>
 
 
