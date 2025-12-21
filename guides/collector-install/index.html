@@ -630,6 +630,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-valraibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment valraibles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#privileges-required" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -649,6 +672,83 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policies-and-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policies and Roles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Policies and Roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account B
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-collectr-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Collectr Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -727,6 +827,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-valraibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment valraibles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#privileges-required" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -746,6 +869,83 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policies-and-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policies and Roles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Policies and Roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account B
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-collectr-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Collectr Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -775,10 +975,10 @@
 
 
 <h1 id="collector">Collector</h1>
-<p>This module describes how to set up the data collection process and what are required to set up the data collection.</p>
-<p>The collector script can be setup in two ways 
-1. Set up as corn jobs
-2. RealTime refresh</p>
+<p>This module describes how to set up the data collection process and what are required to set up the data collection. This is  a simple python scripts which collects the RDS metadata from aws. It doesn't do amy modification or any changes and is completely readonly scripts to AWS. It depends upon some configuration files hence, it's necessary for proper setup of those configurations, which are described detail on below</p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="environment-valraibles">Environment valraibles</h3>
+<p>The collector script depends on below environment variables, some of which it derives automatcally from the <code>.env</code> file.
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -790,29 +990,7 @@
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">UTC</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">json</span><span class="o">,</span><span class="nn">httpx</span><span class="o">,</span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">pytz</span><span class="o">,</span><span class="w"> </span><span class="nn">logging</span><span class="o">,</span><span class="nn">sys</span><span class="o">,</span><span class="nn">uuid</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">botocore.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientError</span><span class="p">,</span> <span class="n">BotoCoreError</span>
-
-<span class="sd">&quot;&quot;&quot;_summary_</span>
-
-<span class="sd">Raises:</span>
-<span class="sd">    RuntimeError: _description_</span>
-
-<span class="sd">Returns:</span>
-<span class="sd">    _type_: _description_</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">:</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">az</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">role_arn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">aws_account_number</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">account_aid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">AWS_REGION</span><span class="o">=</span><span class="n">az</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ROLE_ARN</span><span class="o">=</span><span class="n">role_arn</span>
@@ -820,12 +998,41 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">API_TOKEN</span><span class="o">=</span><span class="n">api_token</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ACCOUNT_AID</span><span class="o">=</span><span class="n">account_aid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">=</span><span class="n">logger</span>
-</code></pre></div></td></tr></table></div>
-<h2 id="privileges-required">Privileges required</h2>
-<h3 id="cross-account-access-flow">Cross-Account Access Flow</h3>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RDSAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSAPI_URL&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RDSMAPAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSMAPAPI_URL&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RDSPARAMSAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSPARAMSAPI_URL&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RDSSECRULESAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSSECRULESAPI_URL&quot;</span><span class="p">)</span>        
+</code></pre></div></td></tr></table></div></p>
+<p>Below is the sample <code>.env</code> teamplate, you need to adjust the values accordingly, only <code>API_*</code> needs to be changed and <code>API_*_URL</code> 's host and port needs to be changes. <code>aws-acct-1=arn:aws:iam::430045346560:role/DbDashCollectorRemoteRole</code> this is the role's arn of the aws account which we want to collect the metadata and this can be any n number.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>aws-acct-1<span class="o">=</span>arn:aws:iam::430045346560:role/DbDashCollectorRemoteRole
+aws-acct-2<span class="o">=</span>arn:aws:iam::358665433441:role/DbDashCollectorRole
+
+<span class="nv">RDSAPI_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/rds/instance&quot;</span>
+<span class="nv">RDSMAPAPI_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/rds/instance/map&quot;</span>
+<span class="nv">RDSPARAMSAPI_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/rds/instance/parameter&quot;</span>
+<span class="nv">RDSSECRULESAPI_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/rds/instance/secrules&quot;</span>
+<span class="nv">API_USERNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;admin@dbdash.com&quot;</span>
+<span class="nv">API_PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Test@1234&quot;</span>
+<span class="nv">API_TOKEN_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://apihost:8000/api/v1/auth/login&quot;</span>
+<span class="nv">API_AZ_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://apihost:8000/api/v1/aws/org/byaccount&quot;</span>
+<span class="nv">API_BASE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://apihost:8000/api/v1&quot;</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="privileges-required">Privileges required</h3>
+<h4 id="cross-account-access-flow">Cross-Account Access Flow</h4>
 <ul>
-<li>Account A: Account where the collector script resides.</li>
-<li>Account B: On of the target account, which the collector script wants to collect the data.</li>
+<li>Account A (358665433441): Account where the collector script resides.</li>
+<li>Account B (430045346560): On of the target account, which the collector script wants to collect the data.</li>
 </ul>
 <p>Below is the control flow how the collector works:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -880,8 +1087,10 @@
         |                                           | 5. Respond with RDS Metadata
         |&lt;------------------------------------------|
 </code></pre></div></td></tr></table></div></p>
-<p>Account A
-Create a collector policy <code>DbDashCollectorPolicy</code>
+<h4 id="policies-and-roles">Policies and Roles</h4>
+<h5 id="account-a">Account A</h5>
+<p>This is account where collector script resides.</p>
+<p>On Account A create a collector policy <code>DbDashCollectorPolicy</code> with below json.
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -926,7 +1135,7 @@ Create a collector policy <code>DbDashCollectorPolicy</code>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
-<p>Create new role <code>DbDashCollectorRole</code>with Trust policy
+<p>Now we need to create a new role <code>DbDashCollectorRole</code>with below Trust policy
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -951,7 +1160,7 @@ Create a collector policy <code>DbDashCollectorPolicy</code>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
-<p>Create policy point to Remote Account <code>DbDashCollectorRemotePolicy</code>
+<p>Additionally we need to create a policy <code>DbDashCollectorRemotePolicy</code> containing arn of role <code>DbDashCollectorRemoteRole</code> in Remote Account B 
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -969,30 +1178,31 @@ Create a collector policy <code>DbDashCollectorPolicy</code>
 <span class="w">      </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DbDashCollectorRemoteRole&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sts:AssumeRole&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::Account_B_ID:role/DbDashCollectorRemoteRole&quot;</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::430045346560:role/DbDashCollectorRemoteRole&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
-<p>Create instance profile
+<p>Now we need to prepare the ec2 instance where the collector script resides. Create instance profile <code>DbDashCollectorProfile</code> as below execute the below on CloudShell to avoid issues:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">iam</span><span class="w"> </span><span class="err">crea</span><span class="kc">te</span><span class="mi">-</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="mi">--</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="mi">-</span><span class="kc">na</span><span class="err">me</span><span class="w"> </span><span class="err">DbDashCollec</span><span class="kc">t</span><span class="err">orPro</span><span class="kc">f</span><span class="err">ile</span>
 </code></pre></div></td></tr></table></div></p>
-<p>Add role to the instance profile
+<p>After successful creation of profile add role <code>DbDashCollectorProfile</code> to the instance profile
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">iam</span><span class="w"> </span><span class="err">add</span><span class="mi">-</span><span class="err">role</span><span class="mi">-</span><span class="kc">t</span><span class="err">o</span><span class="mi">-</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">\</span>
 <span class="mi">--</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="mi">-</span><span class="kc">na</span><span class="err">me</span><span class="w"> </span><span class="err">DbDashCollec</span><span class="kc">t</span><span class="err">orPro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">\</span>
 <span class="mi">--</span><span class="err">role</span><span class="mi">-</span><span class="kc">na</span><span class="err">me</span><span class="w"> </span><span class="err">DbDashCollec</span><span class="kc">t</span><span class="err">orRole</span>
 </code></pre></div></td></tr></table></div></p>
-<p>Associate the profile to the ec2 instance
+<p>As part of final step we need to assign the profile to the ec2, as assigning role to ec2 directly is not possible at this time.
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">ec</span><span class="mi">2</span><span class="w"> </span><span class="err">associa</span><span class="kc">te</span><span class="mi">-</span><span class="err">iam</span><span class="mi">-</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">\</span>
 <span class="mi">--</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">id</span><span class="w"> </span><span class="err">&lt;EC</span><span class="mi">2</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ceID&gt;</span><span class="w"> </span><span class="err">\</span>
 <span class="mi">--</span><span class="err">iam</span><span class="mi">-</span><span class="err">i</span><span class="kc">nstan</span><span class="err">ce</span><span class="mi">-</span><span class="err">pro</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">Name=&lt;EC</span><span class="mi">2</span><span class="err">I</span><span class="kc">nstan</span><span class="err">cePro</span><span class="kc">f</span><span class="err">ile&gt;</span><span class="w"> </span>
 </code></pre></div></td></tr></table></div></p>
-<p>On Target Account:
-Create policy to collect info <code>DbDashCollectorPolicy</code>
+<h5 id="account-b">Account B</h5>
+<p>This is remote account where the collector script collects the rds metadata.</p>
+<p>Create policy <code>DbDashCollectorPolicy</code> with below privileges. 
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1037,7 +1247,7 @@ Create policy to collect info <code>DbDashCollectorPolicy</code>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
-<p>Create Role <code>DbDashCollectorRemoteRole</code>
+<p>Create Role <code>DbDashCollectorRemoteRole</code> with below policy with arn of the role where the collector scripts resides.
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1061,8 +1271,16 @@ Create policy to collect info <code>DbDashCollectorPolicy</code>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+This completes the privileges setup.</p>
+<h4 id="verify">Verify</h4>
+<p>Open a session to the ec2 where the collector resides, and run below commands
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role-arn<span class="w"> </span>arn:aws:iam::430045346560:role/DbDashCollectorRemoteRole<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role-session-name<span class="w"> </span><span class="nb">test</span><span class="w"> </span>&gt;<span class="w"> </span>creds.json
 </code></pre></div></td></tr></table></div></p>
-<p>Validate the setup</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1079,32 +1297,8 @@ Create policy to collect info <code>DbDashCollectorPolicy</code>
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--role-arn<span class="w"> </span>arn:aws:iam:::role/DbDashCollectorRemoteRole<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--role-session-name<span class="w"> </span><span class="nb">test</span><span class="w"> </span>&gt;<span class="w"> </span>creds.json
-
-
-ubuntu@ip-172-31-37-234:~$<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--role-arn<span class="w"> </span>arn:aws:iam:::role/DbDashCollectorRemoteRole<span class="w"> </span><span class="se">\</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>ubuntu@ip-172-31-37-234:~$<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role-arn<span class="w"> </span>arn:aws:iam::430045346560:role/DbDashCollectorRemoteRole<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--role-session-name<span class="w"> </span><span class="nb">test</span><span class="w"> </span>&gt;<span class="w"> </span>creds.json
 ubuntu@ip-172-31-37-234:~$<span class="w"> </span>cat<span class="w"> </span>creds.json
 <span class="o">{</span>
@@ -1116,26 +1310,88 @@ ubuntu@ip-172-31-37-234:~$<span class="w"> </span>cat<span class="w"> </span>cre
 <span class="w">    </span><span class="o">}</span>,
 <span class="w">    </span><span class="s2">&quot;AssumedRoleUser&quot;</span>:<span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="s2">&quot;AssumedRoleId&quot;</span>:<span class="w"> </span><span class="s2">&quot;:test&quot;</span>,
-<span class="w">        </span><span class="s2">&quot;Arn&quot;</span>:<span class="w"> </span><span class="s2">&quot;arn:aws:sts:::assumed-role/DbDashCollectorRemoteRole/test&quot;</span>
+<span class="w">        </span><span class="s2">&quot;Arn&quot;</span>:<span class="w"> </span><span class="s2">&quot;arn:aws:sts::430045346560:assumed-role/DbDashCollectorRemoteRole/test&quot;</span>
 <span class="w">    </span><span class="o">}</span>
 <span class="o">}</span>
 ubuntu@ip-172-31-37-234:~$
-ubuntu@ip-172-31-37-234:~$
-ubuntu@ip-172-31-37-234:~$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.Credentials.AccessKeyId&#39;</span><span class="w"> </span>creds.json<span class="k">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Run below commands to get the STS credentials
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.Credentials.AccessKeyId&#39;</span><span class="w"> </span>creds.json<span class="k">)</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.Credentials.SecretAccessKey&#39;</span><span class="w"> </span>creds.json<span class="k">)</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.Credentials.SessionToken&#39;</span><span class="w"> </span>creds.json<span class="k">)</span>
+</code></pre></div></td></tr></table></div></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>ubuntu@ip-172-31-37-234:~$ export AWS_ACCESS_KEY_ID=$(jq -r &#39;.Credentials.AccessKeyId&#39; creds.json)
+ubuntu@ip-172-31-37-234:~$ export AWS_SECRET_ACCESS_KEY=$(jq -r &#39;.Credentials.SecretAccessKey&#39; creds.json)
+ubuntu@ip-172-31-37-234:~$ export AWS_SESSION_TOKEN=$(jq -r &#39;.Credentials.SessionToken&#39; creds.json)
+ubuntu@ip-172-31-37-234:~$ env | grep AWS
+AWS_SECRET_ACCESS_KEY=
+AWS_ACCESS_KEY_ID=
+AWS_SESSION_TOKEN=
 ubuntu@ip-172-31-37-234:~$
-ubuntu@ip-172-31-37-234:~$
-
-ubuntu@ip-172-31-37-234:~$<span class="w"> </span>env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>AWS
-<span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>
-<span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>
-<span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span>
-ubuntu@ip-172-31-37-234:~$
-ubuntu@ip-172-31-37-234:~$
+</code></pre></div></td></tr></table></div>
+<p>Finally run below cmd's:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>rds<span class="w"> </span>describe-db-instances<span class="w"> </span>--region<span class="w"> </span>us-east-1
+</code></pre></div></td></tr></table></div></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>ubuntu@ip-172-31-37-234:~$
 ubuntu@ip-172-31-37-234:~$<span class="w"> </span>aws<span class="w"> </span>rds<span class="w"> </span>describe-db-instances<span class="w"> </span>--region<span class="w"> </span>us-east-1
 </code></pre></div></td></tr></table></div>
 <p>This ensures only that role in Account A can assume this role in Account B.</p>
+<h4 id="python-requirements">Python requirements</h4>
+<p>Make you have supported python version (Python 3.12 is recommended.) and make sure you install below packages.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">anyio</span><span class="o">==</span><span class="mf">4.12.0</span>
+<span class="n">boto3</span><span class="o">==</span><span class="mf">1.42.14</span>
+<span class="n">botocore</span><span class="o">==</span><span class="mf">1.42.14</span>
+<span class="n">certifi</span><span class="o">==</span><span class="mf">2025.11.12</span>
+<span class="n">dotenv</span><span class="o">==</span><span class="mf">0.9.9</span>
+<span class="n">h11</span><span class="o">==</span><span class="mf">0.16.0</span>
+<span class="n">httpcore</span><span class="o">==</span><span class="mf">1.0.9</span>
+<span class="n">httpx</span><span class="o">==</span><span class="mf">0.28.1</span>
+<span class="n">idna</span><span class="o">==</span><span class="mf">3.11</span>
+<span class="n">jmespath</span><span class="o">==</span><span class="mf">1.0.1</span>
+<span class="n">python</span><span class="o">-</span><span class="n">dateutil</span><span class="o">==</span><span class="mf">2.9.0</span><span class="o">.</span><span class="n">post0</span>
+<span class="n">python</span><span class="o">-</span><span class="n">dotenv</span><span class="o">==</span><span class="mf">1.2.1</span>
+<span class="n">pytz</span><span class="o">==</span><span class="mf">2025.2</span>
+<span class="n">s3transfer</span><span class="o">==</span><span class="mf">0.16.0</span>
+<span class="n">six</span><span class="o">==</span><span class="mf">1.17.0</span>
+<span class="n">typing_extensions</span><span class="o">==</span><span class="mf">4.15.0</span>
+<span class="n">urllib3</span><span class="o">==</span><span class="mf">2.6.2</span>
+</code></pre></div></td></tr></table></div></p>
+<h4 id="running-collectr-script">Running Collectr Script</h4>
+<p>The collector script accepts one argument, which it uses from the <code>.env</code> file to get the metadata. The <code>-awsacct</code> argument is from the <code>.env</code> file <code>aws-acct-1=arn:aws:iam::430045346560:role/DbDashCollectorRemoteRole</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">(</span><span class="n">pyvenv</span><span class="p">)</span> <span class="n">dbdash</span><span class="nd">@ip</span><span class="o">-</span><span class="mi">172</span><span class="o">-</span><span class="mi">31</span><span class="o">-</span><span class="mi">37</span><span class="o">-</span><span class="mi">234</span><span class="p">:</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">dbdash</span><span class="o">/</span><span class="n">dbdash</span><span class="o">/</span><span class="n">collector</span><span class="err">$</span> <span class="n">python</span> <span class="n">collector</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">awsacct</span> <span class="n">aws</span><span class="o">-</span><span class="n">acct</span><span class="o">-</span><span class="mi">1</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">21</span> <span class="mi">01</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">,</span><span class="mi">773</span> <span class="o">|</span> <span class="n">INFO</span> <span class="o">|</span> <span class="n">DbDash</span> <span class="n">Collector</span> <span class="o">|</span> <span class="n">Starting</span> <span class="n">RDS</span> <span class="n">collection</span> <span class="n">job</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">21</span> <span class="mi">01</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">,</span><span class="mi">773</span> <span class="o">|</span> <span class="n">INFO</span> <span class="o">|</span> <span class="n">DbDash</span> <span class="n">Collector</span> <span class="o">|</span> <span class="n">Account</span> <span class="p">:</span> <span class="n">aws</span><span class="o">-</span><span class="n">acct</span><span class="o">-</span><span class="mi">1</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">21</span> <span class="mi">01</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">,</span><span class="mi">773</span> <span class="o">|</span> <span class="n">INFO</span> <span class="o">|</span> <span class="n">DbDash</span> <span class="n">Collector</span> <span class="o">|</span> <span class="n">Api</span> <span class="n">Username</span> <span class="p">:</span> <span class="n">admin</span><span class="nd">@dbdash</span><span class="o">.</span><span class="n">com</span>
+</code></pre></div></td></tr></table></div></p>
 
 
 
