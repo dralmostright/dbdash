@@ -628,6 +628,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#9-publicrdssnapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. public.rdssnapshots
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1045,6 +1056,17 @@
     <span class="md-ellipsis">
       
         8. public.ec2hwdetail/rdshwdetail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-publicrdssnapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. public.rdssnapshots
       
     </span>
   </a>
@@ -1581,6 +1603,52 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdshwdetail_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">rds_hw_id</span><span class="p">)</span>
 <span class="p">)</span>
 </code></pre></div></td></tr></table></div></p>
+<h4 id="9-publicrdssnapshots">9. public.rdssnapshots</h4>
+<p>Stores RDS Snapshots information.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdssnapshots</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="n">snap_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_identifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_rds_identifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_type</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_status</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_created_time</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_engine</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_allocated_storage</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_az</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_engine_ver</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_ipos</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_throughtput</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_taglist</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_arn</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_srcregion</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_srcidentifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_row_created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdssnapshots_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">snap_id</span><span class="p">,</span><span class="w"> </span><span class="n">snap_row_created_at</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="p">(</span><span class="n">snap_row_created_at</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
 <h3 id="partition-management-with-pg_partman">Partition Management with pg_partman</h3>
 <h4 id="create-monthly-partitions">Create Monthly Partitions</h4>
 <p>Behavior</p>
@@ -1646,20 +1714,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">&quot;$user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">partman</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="p">;</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">&quot;$user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">partman</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="p">;</span>
 <span class="c1">-- Create monthly partitions for the table</span>
 <span class="c1">-- create the next 4 partition in advance</span>
 <span class="c1">-- starts from first existing row</span>
@@ -1671,15 +1726,6 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">p_premake</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">           </span>
 <span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span>
 <span class="p">);</span>
-
-<span class="c1">-- Keep only the last 24 months</span>
-<span class="cm">/* SELECT partman.set_config(</span>
-<span class="cm">    p_parent_table := &#39;public.rdsinstances&#39;,</span>
-<span class="cm">    p_control := &#39;created_at&#39;,</span>
-<span class="cm">    p_retention := &#39;24 months&#39;,</span>
-<span class="cm">    p_retention_schema := &#39;partman&#39;</span>
-<span class="cm">);</span>
-<span class="cm">*/</span>
 
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
@@ -1695,14 +1741,6 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w">  </span>
 <span class="p">);</span>
 
-<span class="c1">-- Keep only the last 24 months</span>
-<span class="cm">/* SELECT partman.set_config(</span>
-<span class="cm">    p_parent_table := &#39;public.rdsinstances&#39;,</span>
-<span class="cm">    p_control := &#39;param_row_created_at&#39;,</span>
-<span class="cm">    p_retention := &#39;24 months&#39;,</span>
-<span class="cm">    p_retention_schema := &#39;partman&#39;</span>
-<span class="cm">);</span>
-<span class="cm">*/</span>
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">retention_keep_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span>
@@ -1717,20 +1755,24 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span>
 <span class="p">);</span>
 
-<span class="cm">/*</span>
-<span class="cm">-- Keep only the last 24 months</span>
-<span class="cm">SELECT partman.set_config(</span>
-<span class="cm">   p_parent_table := &#39;public.rdssecrules&#39;,</span>
-<span class="cm">    p_control := &#39;sec_row_created_at&#39;,</span>
-<span class="cm">    p_retention := &#39;24 months&#39;,</span>
-<span class="cm">    p_retention_schema := &#39;partman&#39;</span>
-<span class="cm">);</span>
-<span class="cm">*/</span>
-
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">retention_keep_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">parent_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdssecrules&#39;</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">create_parent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">p_parent_table</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdssnapshots&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_control</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sec_row_created_at&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;range&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_interval</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1 month&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_premake</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">           </span>
+<span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span>
+<span class="p">);</span>
+
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;12 months&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">retention_keep_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">parent_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdssnapshots&#39;</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div></li>
 </ul>
 <h4 id="retention-policy">Retention Policy</h4>
@@ -1765,25 +1807,33 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">\</span><span class="k">connect</span><span class="w"> </span><span class="n">postgres</span>
-<span class="c1">-- This requires pg_cron</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">\</span><span class="k">connect</span><span class="w"> </span><span class="n">postgres</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cron</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
 <span class="w">    </span><span class="s1">&#39;pg_partman_maintenance&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- every day at 2 AM</span>
+<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w">  </span>
 <span class="w">    </span><span class="err">$$</span><span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">run_maintenance</span><span class="p">(</span><span class="s1">&#39;public.rdsinstances&#39;</span><span class="p">);</span><span class="err">$$</span>
 <span class="p">);</span>
 
-<span class="c1">-- This requires pg_cron</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cron</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
 <span class="w">    </span><span class="s1">&#39;pg_partman_maintenance&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- every day at 2 AM</span>
+<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">    </span><span class="err">$$</span><span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">run_maintenance</span><span class="p">(</span><span class="s1">&#39;public.rdsinstparams&#39;</span><span class="p">);</span><span class="err">$$</span>
 <span class="p">);</span>
-<span class="c1">-- This requires pg_cron</span>
+
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cron</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
 <span class="w">    </span><span class="s1">&#39;pg_partman_maintenance&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- every day at 2 AM</span>
+<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">    </span><span class="err">$$</span><span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">run_maintenance</span><span class="p">(</span><span class="s1">&#39;public.rdssecrules&#39;</span><span class="p">);</span><span class="err">$$</span>
+<span class="p">);</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">cron</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;pg_partman_maintenance&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;0 2 * * *&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">$$</span><span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">run_maintenance</span><span class="p">(</span><span class="s1">&#39;public.rdssnapshots&#39;</span><span class="p">);</span><span class="err">$$</span>
 <span class="p">);</span>
 </code></pre></div></td></tr></table></div></li>
 </ul>
