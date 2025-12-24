@@ -1001,7 +1001,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">RDSAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSAPI_URL&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">RDSMAPAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSMAPAPI_URL&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">RDSPARAMSAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSPARAMSAPI_URL&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">RDSSECRULESAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSSECRULESAPI_URL&quot;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">RDSSECRULESAPI_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RDSSECRULESAPI_URL&quot;</span><span class="p">)</span>   
 </code></pre></div></td></tr></table></div></p>
 <p>Below is the sample <code>.env</code> teamplate, you need to adjust the values accordingly, only <code>API_*</code> needs to be changed and <code>API_*_URL</code> 's host and port needs to be changes. <code>aws-acct-1=arn:aws:iam::430045346560:role/DbDashCollectorRemoteRole</code> this is the role's arn of the aws account which we want to collect the metadata and this can be any n number.
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1112,7 +1112,8 @@ aws-acct-2<span class="o">=</span>arn:aws:iam::358665433441:role/DbDashCollector
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -1128,6 +1129,7 @@ aws-acct-2<span class="o">=</span>arn:aws:iam::358665433441:role/DbDashCollector
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterEndpoints&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshotAttributes&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshots&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterSnapshots&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;ec2:DescribeSecurityGroups&quot;</span>
 <span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span>
@@ -1224,7 +1226,8 @@ aws-acct-2<span class="o">=</span>arn:aws:iam::358665433441:role/DbDashCollector
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -1240,6 +1243,7 @@ aws-acct-2<span class="o">=</span>arn:aws:iam::358665433441:role/DbDashCollector
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterEndpoints&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshotAttributes&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;rds:DescribeDBSnapshots&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;rds:DescribeDBClusterSnapshots&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;ec2:DescribeSecurityGroups&quot;</span>
 <span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span>

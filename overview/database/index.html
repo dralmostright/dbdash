@@ -639,6 +639,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#10-publicsnapawsrdsmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. public.snapawsrdsmap
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1067,6 +1078,17 @@
     <span class="md-ellipsis">
       
         9. public.rdssnapshots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-publicsnapawsrdsmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. public.snapawsrdsmap
       
     </span>
   </a>
@@ -1626,7 +1648,10 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdssnapshots</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">rdssnapshots</span>
 <span class="p">(</span>
 <span class="w">    </span><span class="n">snap_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">snap_identifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
@@ -1637,6 +1662,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">snap_engine</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">snap_allocated_storage</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">snap_az</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_region</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span><span class="w">    </span>
 <span class="w">    </span><span class="n">snap_engine_ver</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">snap_ipos</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">snap_throughtput</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
@@ -1645,9 +1671,37 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">snap_srcregion</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">snap_srcidentifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">snap_row_created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_aws_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snap_progress</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">rdssnapshots_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">snap_id</span><span class="p">,</span><span class="w"> </span><span class="n">snap_row_created_at</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="p">(</span><span class="n">snap_row_created_at</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<h4 id="10-publicsnapawsrdsmap">10. public.snapawsrdsmap</h4>
+<p>Stores RDS Snapshots Mapping information.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">snapawsrdsmap</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="n">sar_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sar_created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sar_snap_id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sar_aws_aid</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sar_rds_identifier</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sar_rds_az</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="ss">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sar_last_collection_at</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">snapawsrdsmap_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">sar_id</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">TABLESPACE</span><span class="w"> </span><span class="n">pg_default</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div></p>
 <h3 id="partition-management-with-pg_partman">Partition Management with pg_partman</h3>
 <h4 id="create-monthly-partitions">Create Monthly Partitions</h4>
@@ -1712,9 +1766,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">&quot;$user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">partman</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="p">;</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">&quot;$user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">partman</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="p">;</span>
 <span class="c1">-- Create monthly partitions for the table</span>
 <span class="c1">-- create the next 4 partition in advance</span>
 <span class="c1">-- starts from first existing row</span>
@@ -1726,7 +1778,6 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">p_premake</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">           </span>
 <span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span>
 <span class="p">);</span>
-
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">retention_keep_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span>
@@ -1740,7 +1791,6 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 <span class="w">    </span><span class="n">p_premake</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">           </span>
 <span class="w">    </span><span class="n">p_start_partition</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w">  </span>
 <span class="p">);</span>
-
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">part_config</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">retention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;24 months&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">retention_keep_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span>
@@ -1762,7 +1812,7 @@ The design leverages native PostgreSQL partitioning, pg_partman, and pg_cron to 
 
 <span class="k">SELECT</span><span class="w"> </span><span class="n">partman</span><span class="p">.</span><span class="n">create_parent</span><span class="p">(</span>
 <span class="w">    </span><span class="n">p_parent_table</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public.rdssnapshots&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">p_control</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sec_row_created_at&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p_control</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;snap_row_created_at&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">p_type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;range&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">p_interval</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1 month&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">p_premake</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">           </span>
