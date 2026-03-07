@@ -1,0 +1,36 @@
+.center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-relative {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  display: inline-flex;
+  gap: 5px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  width: 25px;
+  aspect-ratio: 1;
+  box-shadow: 0 0 0 3px inset #b3d4fc;
+  animation: l5 1.5s infinite;
+}
+.loader:after {
+  --s:-1;
+}
+@keyframes l5 {
+  0%   {transform:scaleX(var(--s,1)) translate(0) scale(1)}
+  33%  {transform:scaleX(var(--s,1)) translate(calc(50% + 2.5px)) scale(1)}
+  66%  {transform:scaleX(var(--s,1)) translate(calc(50% + 2.5px)) scale(2)}
+  100% {transform:scaleX(var(--s,1)) translate(0) scale(1)}
+}

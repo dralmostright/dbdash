@@ -1,0 +1,70 @@
+# -----------------------------
+# Global ignores
+# -----------------------------
+# Ignore the stage directory
+NiceAdmin/
+site/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Python / FastAPI (backend)
+# -----------------------------
+# Bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+backend/migrations/versions/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Environment/config files
+*.env
+.env.*
+provisiondb.py
+
+# Tooling
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+Restfox_2025-11-20.json
+Postman_2025-11-30.json
+
+# -----------------------------
+# React / Node (frontend)
+# -----------------------------
+frontend/node_modules/
+frontend/build/
+frontend/.cache/
+frontend/dist/
+
+# Log & debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+frontend/.env
+frontend/.env.*
+
+# -----------------------------
+# Optional: If using yarn/pnpm workspaces
+# -----------------------------
+*.tsbuildinfo

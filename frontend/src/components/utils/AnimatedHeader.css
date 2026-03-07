@@ -1,0 +1,73 @@
+.animated-header {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #111;
+    color: white;
+  }
+  
+  /* Background layer */
+  .animated-header__bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("https://placekitten.com/900/500"); /* your image */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+  
+    /* <-- Infinite animation */
+    animation: bgZoom 6s ease-in-out infinite alternate;
+  }
+  
+  /* Foreground content */
+  .animated-header__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  
+  .animated-header__title {
+    font-size: 2rem;
+    margin: 0;
+    animation: titleFloat 3s ease-in-out infinite;
+  }
+  
+  .animated-header__subtitle {
+    opacity: 0.85;
+    animation: fadeLoop 4s ease-in-out infinite alternate;
+  }
+  
+  /* Keyframes */
+  @keyframes bgZoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  
+  @keyframes titleFloat {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-6px);
+    }
+  }
+  
+  @keyframes fadeLoop {
+    0% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  

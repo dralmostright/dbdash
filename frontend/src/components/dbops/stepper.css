@@ -1,0 +1,49 @@
+.stepper-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stepper-item {
+  position: relative;
+  flex: 1;
+  text-align: center;
+}
+
+.stepper-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;              
+  border: 2px solid #0d6efd;
+  color: #0d6efd;
+  line-height: 46px;             
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.stepper-circle.active {
+  background: #0d6efd; 
+  color: #fff;
+}
+
+.stepper-line {
+  position: absolute;
+  top: 22px;             
+  left: -50%;
+  width: 100%;
+  height: 10px;
+  background: #e9ecef;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+.stepper-line.active {
+  background: #0d6efd;
+}
+
+
+

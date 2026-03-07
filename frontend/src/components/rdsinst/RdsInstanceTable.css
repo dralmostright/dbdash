@@ -1,0 +1,34 @@
+.searchbar input {
+    padding: 0.5rem 0.75rem 0.5rem 1.75rem
+}
+.pi-search {
+    padding-left: 0.5rem;
+}
+
+/* Ensure the DataTable table collapses borders (to avoid double-border issues) */
+.p-datatable.p-datatable-gridlines table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  /* Add border to header cells */
+  .p-datatable.p-datatable-gridlines .p-datatable-thead > tr > th {
+    border: 1px solid var(--surface-border, #dfe7ef);
+  }
+  
+  /* Add border to body cells */
+  .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td {
+    border: 1px solid var(--surface-border, #dfe7ef);
+  }
+  
+  /* Optionally, remove double border between header and first row body */
+  .p-datatable.p-datatable-gridlines .p-datatable-thead + .p-datatable-tbody 
+    > tr:first-child > td {
+    border-top: none;
+  }
+
+  .rds-action {
+    display:flex;
+    justify-content: center;
+  }
+  

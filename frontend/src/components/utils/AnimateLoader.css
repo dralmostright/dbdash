@@ -1,0 +1,152 @@
+.loader-container {
+    --body-color: #010c15;
+    --text-color: #726f77;
+    --primary-color: #20c863;
+    --secondary-color: #d4ff00;
+  
+    color-scheme: dark;
+    --size: 120px;
+    --offset: 30px;
+    --duration: 30s;
+  
+    position: relative;
+    aspect-ratio: 1 / 1;
+    pointer-events: none;
+    display: inline-grid;
+    border-radius: 9999px;
+    width: calc(var(--size) * 3);
+    border: 6px solid var(--primary-color);
+    transition: box-shadow 0.3s ease-in-out;
+    animation: spin-out var(--duration) linear infinite;
+  
+    & .item {
+      z-index: 1;
+      display: flex;
+      grid-area: 1 / 1;
+      width: var(--size);
+      aspect-ratio: 1 / 1;
+      pointer-events: auto;
+      border-radius: 9999px;
+      animation: spin-in var(--duration) linear infinite reverse;
+      offset: circle(
+          calc(var(--size) / (2 * sin(0.5turn / sibling-count())) + var(--offset))
+        )
+        calc(100% * sibling-index() / sibling-count()) 0deg;
+  
+      & img {
+        width: inherit;
+        height: inherit;
+        pointer-events: auto;
+        border-radius: 9999px;
+        border: 3px solid var(--primary-color);
+  
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+        transition-property: box-shadow, scale, border;
+      }
+  
+      &:hover {
+        z-index: 2;
+  
+        & img {
+          scale: 1.5;
+          border-color: var(--secondary-color);
+          box-shadow: 0 0 1rem var(--secondary-color);
+        }
+  
+        & ~ * img {
+          scale: 0.6;
+        }
+      }
+  
+      &:has(~ *:hover) img {
+        scale: 0.6;
+      }
+    }
+  
+    &::before {
+      content: "";
+      z-index: -1;
+      border: inherit;
+      position: absolute;
+      width: var(--size);
+      aspect-ratio: 1 / 1;
+      border-radius: 0.25rem;
+  
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      transform: translate(-50%, -50%);
+  
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in-out;
+      transition-property: transform, border-radius, border, box-shadow;
+    }
+  
+    &::after {
+      content: "";
+      z-index: -1;
+      inset: -6px;
+      width: inherit;
+      height: inherit;
+      border: inherit;
+      position: absolute;
+      border-radius: inherit;
+      animation: spin-in var(--duration) linear infinite reverse;
+  
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in-out;
+      transition-property: scale, border-radius, border, box-shadow;
+    }
+  
+    &:has(.item:hover) {
+      animation-play-state: paused;
+      box-shadow: 0 0 60px 12px var(--primary-color) inset,
+        0 0 21px 15px var(--body-color);
+  
+      & .item {
+        animation-play-state: paused;
+      }
+  
+      &::before {
+        --scale: 4;
+        --translate: calc(-50% / var(--scale));
+  
+        border-width: 2px;
+        border-radius: inherit;
+        border-color: var(--secondary-color);
+        transform: scale(var(--scale))
+          translate(var(--translate), var(--translate));
+        box-shadow: 0 0 15px var(--secondary-color),
+          0 0 15px var(--primary-color) inset;
+      }
+  
+      &::after {
+        scale: 0.3;
+        border-width: 18px;
+        border-radius: 3rem;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 var(--size) var(--secondary-color) inset;
+      }
+    }
+  }
+  
+  @keyframes spin-out {
+    from {
+      rotate: 0;
+    }
+  
+    to {
+      rotate: 360deg;
+    }
+  }
+  
+  @keyframes spin-in {
+    from {
+      transform: rotate(0);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

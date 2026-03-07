@@ -1,0 +1,26 @@
+/* e.g. in your main CSS file */
+
+.status-icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.status-success {
+  background-color: #d1f7d6; /* light green */
+  border: 2px solid #28a745; /* Bootstrap-ish green */
+}
+
+.status-failed {
+  background-color: #f8d7da; /* light red */
+  border: 2px solid #dc3545; /* Bootstrap-ish red */
+}
+
+.status-icon-symbol {
+  font-size: 2.5rem;
+  color: #28a745; /* green for success */
+}
+
+.status-failed .status-icon-symbol {
+  color: #dc3545; /* red for failed */
+}

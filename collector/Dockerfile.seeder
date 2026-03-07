@@ -1,0 +1,15 @@
+# Use existing API image as base
+FROM dbdash-api
+
+# Set working directory
+WORKDIR /app
+
+# Copy seeder code
+COPY seedsample.py .
+COPY collector.py .
+
+# Copy environment file
+COPY .seedenv .env
+
+# Default command: run the seeder
+CMD ["python", "/app/seedsample.py"]

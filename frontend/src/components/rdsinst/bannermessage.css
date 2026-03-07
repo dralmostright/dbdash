@@ -1,0 +1,7 @@
+.my-transparent-table,
+.my-transparent-table tbody tr,
+.my-transparent-table td,
+.my-transparent-table th,
+.my-transparent-table tbody tr:hover {
+  background-color: transparent !important;
+}

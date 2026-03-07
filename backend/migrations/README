@@ -1,0 +1,26 @@
+Generic single-database configuration with an async dbapi.
+For albemic - we need to update he configuration changes on env.py and script.py.mako
+
+
+alembic init alembic
+alembic revision --autogenerate -m "init"
+alembic upgrade  head
+fastapi dev src --host "0.0.0.0" --port "8080"
+
+
+(venv) C:\Users\dralm\Workspace\dbdash\backend>alembic revision --autogenerate -m "init"
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.autogenerate.compare] Detected NULL on column 'apiusers.is_verified'
+Generating C:\Users\dralm\Workspace\dbdash\backend\migrations\versions\94bb6d2d6350_init.py ...  done
+
+(venv) C:\Users\dralm\Workspace\dbdash\backend>alembic upgrade  head
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade a2ddf047bd5a -> 94bb6d2d6350, init
+
+
+mkdocs serve        # preview
+git commit -am "Update docs"
+git push
+mkdocs gh-deploy

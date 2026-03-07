@@ -1,0 +1,57 @@
+services:
+  db:
+    build:
+      context: ./dbdash-repo
+      dockerfile: Dockerfile
+    image: dbdash-repo
+    container_name: dbdash-repo
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-apiuser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-supersecret}
+      POSTGRES_DB: ${POSTGRES_DB:-dbdash}
+      POSTGRES_INITDB_ARGS: >
+        -c shared_preload_libraries=pg_cron,pg_partman_bgw
+    volumes:
+      - ./dbdash-repo/pg_data:/var/lib/postgresql/data
+      - ./dbdash-repo/init-seed:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: ./dbdash/backend/
+      dockerfile: Dockerfile
+    image: dbdash-api      
+    container_name: dbdash-api
+    restart: unless-stopped
+    env_file:
+      - dbdash-api/.env
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  ui:
+    build:
+      context: ./dbdash/frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: "/api/v1"
+    image: dbdash-ui 
+    container_name: dbdash-ui
+    restart: unless-stopped    
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

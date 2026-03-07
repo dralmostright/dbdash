@@ -1,0 +1,15 @@
+.showprofile {
+  position: absolute;
+  inset: 0px 0px auto auto;
+  margin-top: 12px;
+  transform: translate(-16px, 38px);
+}
+
+.profileheader li .active  {
+  background-color: #FFF !important;
+  color: black !important;
+}
+
+.profileheader li .active:hover {
+  background-color: #f6f9ff !important;
+}

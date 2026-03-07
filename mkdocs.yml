@@ -1,0 +1,45 @@
+site_name: DbDash Documentation
+site_description: DbDash Documentation
+site_author: Suman Adhikari
+site_url: https://dralmostright.github.io/dbdash/
+
+repo_url: https://github.com/dralmostright/dbdash
+repo_name: GitHub
+
+extra_css:
+  - assets/css/custom.css
+
+theme:
+  name: material
+  logo: imgs/logo.png
+  favicon: imgs/favicon.png  
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.details
+  - pymdownx.highlight:
+        linenums: true
+  - pymdownx.snippets:
+      base_path: .
+      check_paths: true
+
+nav:
+  - Home: index.md
+  - Overview:
+      - Architecture: overview/architecture.md
+      - Database : overview/database.md
+  - Installation Guides:
+      - Quick Installation: guides/quick-install.md
+      - Detail Installation: guides/detail-install.md   
+      - Collector Installation: guides/collector-install.md     
+  - Contributing: contributing.md

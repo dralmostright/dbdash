@@ -1,0 +1,36 @@
+.status-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem; /* small icon */
+}
+
+.status-circle.success {
+  background-color: #d4f8df;
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+
+.status-circle.failed {
+  background-color: #f8d7da;
+  border: 2px solid #dc3545;
+  color: #dc3545;
+}
+
+.custom-spinner { width: 20px !important; height: 20px !important; border-width: 3px; }
+
+.success-text {
+  color: #28a745;
+}
+
+.failed-text {
+  color: #dc3545;
+}
+
+.event-time-col {
+  white-space: nowrap;   
+  min-width: 190px;      
+}
