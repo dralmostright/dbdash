@@ -49,23 +49,23 @@ export default function ProfileChangePassword({ user, activetab }) {
   ];
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
-}
+  }
 
-const handleRegister = async (e) => {
-  e.preventDefault();
-  const form = e.currentTarget;
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
 
-  if (!form.checkValidity()) {
+    if (!form.checkValidity()) {
       e.stopPropagation();
-  }
-  function sleep(ms) {
+    }
+    function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
-  }
+    }
 
-  setValidated(true);
+    setValidated(true);
 
-  if (form.checkValidity()) {
-      setLoading(true); 
+    if (form.checkValidity()) {
+      setLoading(true);
       setError("");
       setSuccess("");
 
@@ -74,67 +74,62 @@ const handleRegister = async (e) => {
         await UsersApi.changepassword(user.uid, values);
         setSuccess("Password have been changed successfully!");
       } catch (err) {
-          await sleep(1000);
+        await sleep(1000);
         console.error(err);
         setError(err.response?.data?.message || "Failed to change password.");
       } finally {
-        setLoading(false); 
+        setLoading(false);
 
         setValues({
           password_hash: "",
           new_password_hash: "",
           confirmpassword: "",
-      });
-      setValidated(false);
-      form.reset();
+        });
+        setValidated(false);
+        form.reset();
       }
     }
   };
   return (
     <div
-      className={`pt-3 tab-pane fade ${
-        activetab === "password" ? " show active" : ""
-      }`} style={{minHeight: "300px"}}
+      className={`pt-3 tab-pane fade ${activetab === "password" ? " show active" : ""
+        }`} style={{ minHeight: "300px" }}
     >
-    {error && <ErrorCard message={error} />}
-    {success && <div className="alert alert-success">{success}</div>}
+      {error && <ErrorCard message={error} />}
+      {success && <div className="alert alert-success">{success}</div>}
 
       <form className={`row g-3 needs-validation ${validated ? "was-validated" : ""}`}
-                                            noValidate
-                                            onSubmit={handleRegister}>
+        noValidate
+        onSubmit={handleRegister}>
         <h5 className="card-title">Change Password</h5>
 
-        {
-                                                registerInputs.map(
-                                                    (input) =>
-                                                    (
-                                                        <FormInput key={input.id + "_" + values[input.name]} 
-                                                            {...input}
-                                                            value={values[input.name]}
-                                                            onChange={onChange}
-                                                        />
-                                                    )
-                                                )
-                                            }
+        {registerInputs.map((input) => (
+          <FormInput
+            key={input.id}
+            {...input}
+            value={values[input.name]}
+            onChange={onChange}
+          />
+        ))}
         <div className="text-center">
-        <button
-                        className="btn btn-primary w-100"
-                        type="submit"
-                        disabled={loading}
-                    >
-                        {loading ? (
-                            <>
-                                <span
-                                    className="spinner-border spinner-border-sm me-2"
-                                    role="status"
-                                    aria-hidden="true"
-                                ></span>
-                                Updating...
-                            </>
-                        ) : (
-                            "Update Password"
-                        )}
-                    </button>
+          <button
+            className="btn btn-primary w-100"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <span
+                  className="spinner-border spinner-border-sm me-2"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Updating...
+              </>
+            ) : (
+              "Update Password"
+            )}
+          </button>
         </div>
       </form>
     </div>
